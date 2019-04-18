@@ -1,14 +1,23 @@
 package modelo.poblacion;
 
-public abstract class seres {
+public abstract class Seres implements EstablecerNV, Cobrable{
 	private String nombre;
 	private int edad;
 	private float subsidio;
 	private float ahorro;
 	private float esperanzaVida;
 	private float decrecimiento;
+	private  float nivelVida;
 	
-	public seres(String nombre, int edad, float subsidio, float ahorro, float esperanzaVida, float decrecimiento) {
+	public float getNivelVida() {
+		return nivelVida;
+	}
+
+	public void setNivelVida(float nivelVida) {
+		this.nivelVida = nivelVida;
+	}
+
+	public Seres(String nombre, int edad, float subsidio, float ahorro, float esperanzaVida, float decrecimiento) {
 		super();
 		this.nombre = nombre;
 		this.edad = edad;
@@ -16,6 +25,7 @@ public abstract class seres {
 		this.ahorro = ahorro;
 		this.esperanzaVida = esperanzaVida;
 		this.decrecimiento = decrecimiento;
+		
 	}
 
 	public String getNombre() {

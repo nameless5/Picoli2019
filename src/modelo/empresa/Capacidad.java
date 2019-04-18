@@ -1,6 +1,6 @@
 package modelo.empresa;
 
-public enum capacidad {
+public enum Capacidad {
  pequeña/*(100)*/,mediana/*(400)*/, grande/*(100)*/;
  private int valor;
 
