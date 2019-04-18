@@ -1,6 +1,8 @@
 package control;
 
-public class Estado {
+import modelo.poblacion.Cobrable;
+
+public class Estado  {
 	float demanda;
 	int numeroEmpresa;
 	int numeroSeres;
