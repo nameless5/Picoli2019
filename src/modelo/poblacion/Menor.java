@@ -9,6 +9,7 @@ public class Menor extends Seres {
 		// TODO Auto-generated constructor stub
 	}
 
+
 	@Override
 	public void establecerNV() {
 		// TODO Auto-generated method stub
