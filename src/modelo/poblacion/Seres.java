@@ -22,21 +22,21 @@ public class Seres implements EstablecerNV{
 		this.nivelVida = nivelVida;
 	}
 
-	public Seres(int edad, float subsidio, float ahorro, float esperanzaVida) {
+	public Seres(float subsidio, float ahorro) {
 		super();
 		nombre = generarNombreAleatorio(nombres);
-		this.edad = edad;
+		edad = generarEdad();
 		this.subsidio = subsidio;
 		this.ahorro = ahorro;
-		this.esperanzaVida = esperanzaVida;
+		this.esperanzaVida = generarEdad();
 
 	}
 	
-	public int generarEdadMenorAleatoria() {
-		int edadMax = 18;
-		int edadMin=1;
-		int edadAleatoria=(int) (Math.random()*(edadMax-edadMin)+edadMin);
-		return edadAleatoria;
+	public int generarEdad() {
+		int edadMax = 90 ;
+		int edadMin=0;
+		int esperanzaVida=(int) (Math.random()*(edadMax-edadMin)+edadMin);
+		return esperanzaVida;
 	}
 	
 	public void anadirNombresAlaLista(LinkedList<String> nombres) {

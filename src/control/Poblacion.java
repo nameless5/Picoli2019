@@ -23,7 +23,7 @@ public class Poblacion {
 	}
 		
 	public void generadorCiudadanos(Seres seres,LinkedList<String> nombres) {
-		Seres ciudadano = new Seres(generarNombreAleatorio(nombres), generarEdadMenorAleatoria(), 150.f, 200.5f, 80, 0.2f);
+		Seres ciudadano = new Seres(150.f, 200.5f);
 	}
 	
 		
