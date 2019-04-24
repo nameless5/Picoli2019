@@ -2,10 +2,9 @@ package modelo.empresa;
 
 import java.util.Stack;
 
-import modelo.poblacion.Trabajador;
+import modelo.poblacion.Seres;
 
 public class Factorias {
-	Capacidad capacidad;
 	int produccion;
-	Stack<Trabajador> pilaTrabajador = new Stack<>();
+	private Stack<Seres> pilaTrabajador = new Stack<>();
 }
