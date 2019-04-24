@@ -35,6 +35,7 @@ public class Seres implements EstablecerNV{
 	public int generarEdad() {
 		int edadInicial=0;
 		return edadInicial;
+		
 	}
 	
 	public void anadirNombresAlaLista(LinkedList<String> nombres) {
