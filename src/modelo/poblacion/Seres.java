@@ -1,13 +1,18 @@
 package modelo.poblacion;
 
-public abstract class Seres implements EstablecerNV, Cobrable{
+import java.util.LinkedList;
+
+public class Seres implements EstablecerNV{
 	private String nombre;
 	private int edad;
 	private float subsidio;
 	private float ahorro;
 	private float esperanzaVida;
-	private float decrecimiento;
-	private  float nivelVida;
+	private float nivelVida;
+	LinkedList<String> nombres = new LinkedList();
+	String[] personas= {"Antonio","Paco","Pepe","Monica","Laura","Marta","Manolo","Maria","Pedro","Jesus",
+			"Fran","Ana","Raul","Victoria","SerRaro","Alien","Depredador","Pitufino","Rufino","Victoria"};
+	
 	
 	public float getNivelVida() {
 		return nivelVida;
@@ -17,15 +22,36 @@ public abstract class Seres implements EstablecerNV, Cobrable{
 		this.nivelVida = nivelVida;
 	}
 
-	public Seres(String nombre, int edad, float subsidio, float ahorro, float esperanzaVida, float decrecimiento) {
+	public Seres(int edad, float subsidio, float ahorro, float esperanzaVida) {
 		super();
-		this.nombre = nombre;
+		nombre = generarNombreAleatorio(nombres);
 		this.edad = edad;
 		this.subsidio = subsidio;
 		this.ahorro = ahorro;
 		this.esperanzaVida = esperanzaVida;
-		this.decrecimiento = decrecimiento;
-		
+
+	}
+	
+	public int generarEdadMenorAleatoria() {
+		int edadMax = 18;
+		int edadMin=1;
+		int edadAleatoria=(int) (Math.random()*(edadMax-edadMin)+edadMin);
+		return edadAleatoria;
+	}
+	
+	public void anadirNombresAlaLista(LinkedList<String> nombres) {
+		for (int i = 0; i < personas.length; i++) {
+			String nombresRecorridos=personas[i];
+			nombres.add(nombresRecorridos);
+		}
+	}
+	
+	public String generarNombreAleatorio(LinkedList<String> nombres) {
+		anadirNombresAlaLista(nombres);
+		int min=1;
+		int max=nombres.size();
+		String aleatorio =nombres.get((int) (Math.random()*(max-min)+min));
+		return aleatorio;
 	}
 
 	public String getNombre() {
@@ -68,11 +94,9 @@ public abstract class Seres implements EstablecerNV, Cobrable{
 		this.esperanzaVida = esperanzaVida;
 	}
 
-	public float getDecrecimiento() {
-		return decrecimiento;
-	}
-
-	public void setDecrecimiento(float decrecimiento) {
-		this.decrecimiento = decrecimiento;
+	@Override
+	public void establecerNV() {
+		// TODO Auto-generated method stub
+		
 	}
 }
