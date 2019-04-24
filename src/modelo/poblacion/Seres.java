@@ -33,10 +33,8 @@ public class Seres implements EstablecerNV{
 	}
 	
 	public int generarEdad() {
-		int edadMax = 90 ;
-		int edadMin=0;
-		int esperanzaVida=(int) (Math.random()*(edadMax-edadMin)+edadMin);
-		return esperanzaVida;
+		int edadInicial=0;
+		return edadInicial;
 	}
 	
 	public void anadirNombresAlaLista(LinkedList<String> nombres) {
