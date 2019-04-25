@@ -13,14 +13,6 @@ public class Seres implements EstablecerNV{
 	String[] personas= {"Antonio","Paco","Pepe","Monica","Laura","Marta","Manolo","Maria","Pedro","Jesus",
 			"Fran","Ana","Raul","Victoria","SerRaro","Alien","Depredador","Pitufino","Rufino","Victoria"};
 	
-	
-	public float getNivelVida() {
-		return nivelVida;
-	}
-
-	public void setNivelVida(float nivelVida) {
-		this.nivelVida = nivelVida;
-	}
 
 	public Seres(float subsidio, float ahorro) {
 		super();
@@ -92,6 +84,14 @@ public class Seres implements EstablecerNV{
 
 	public void setEsperanzaVida(float esperanzaVida) {
 		this.esperanzaVida = esperanzaVida;
+	}
+	
+	public float getNivelVida() {
+		return nivelVida;
+	}
+
+	public void setNivelVida(float nivelVida) {
+		this.nivelVida = nivelVida;
 	}
 
 	@Override

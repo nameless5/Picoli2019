@@ -8,7 +8,7 @@ import java.util.LinkedList;
 
 
 public class Estado  {
-	public static void main(String[] args) {
+	
 		
 	float demanda;
 	int numeroEmpresa;
@@ -16,14 +16,14 @@ public class Estado  {
 	float cantidadMin;
  
 	Seres yo = new Seres(3, 100);
-	System.out.println(yo.getNombre());
-	
-	}	
-	
-	
-	
-	public void fallecimmiento() {
-		
+
+	public boolean fallecimiento() {
+		boolean resultado = false;
+		if(yo.getNivelVida()>= yo.getEsperanzaVida()) {
+			resultado = true;
+			return resultado;
+		}
+		return resultado;
 		
 	}
 	public void comprobarProduccion() {
