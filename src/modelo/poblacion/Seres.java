@@ -10,10 +10,17 @@ public class Seres implements EstablecerNV{
 	private float esperanzaVida;
 	private float nivelVida;
 	LinkedList<String> nombres = new LinkedList();
-	String[] personas= {"Antonio","Paco","Pepe","Monica","Laura","Marta","Manolo","Maria","Pedro","Jesus",
-			"Fran","Ana","Raul","Victoria","SerRaro","Alien","Depredador","Pitufino","Rufino","Victoria"};
+	private String[] personas= {"Antonio","Paco","Pepe","Monica","Laura","Marta","Manolo","Maria","Pedro","Jesus",
+			"Fran","Ana","Raul","Victoria","SerRaro","Alien","Depredador","Pitufino","Rufino","Teresa"};
 	
-	
+	public LinkedList<String> getNombres() {
+		return nombres;
+	}
+
+	public String[] getPersonas() {
+		return personas;
+	}
+
 	public float getNivelVida() {
 		return nivelVida;
 	}
@@ -22,22 +29,24 @@ public class Seres implements EstablecerNV{
 		this.nivelVida = nivelVida;
 	}
 
-	public Seres(float subsidio, float ahorro) {
+	public Seres(float subsidio) {
 		super();
 		nombre = generarNombreAleatorio(nombres);
 		edad = generarEdad();
 		this.subsidio = subsidio;
-		this.ahorro = ahorro;
+		this.ahorro = generarAhorro();
 		this.esperanzaVida = generarEdad();
-
 	}
 	
 	public int generarEdad() {
-		int edadInicial=0;
-		return edadInicial;
+		edad=0;
+		return (int) edad;
 		
 	}
-	
+	public int generarAhorro() {
+		ahorro=0;
+		return (int) ahorro;
+	};
 	public void anadirNombresAlaLista(LinkedList<String> nombres) {
 		for (int i = 0; i < personas.length; i++) {
 			String nombresRecorridos=personas[i];

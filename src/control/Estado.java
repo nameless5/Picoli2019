@@ -15,7 +15,7 @@ public class Estado  {
 	int numeroSeres;
 	float cantidadMin;
  
-	Seres yo = new Seres(3, 100);
+	Seres yo = new Seres(3);
 	System.out.println(yo.getNombre());
 	
 	}	

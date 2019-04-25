@@ -22,19 +22,9 @@ public class Poblacion {
 		poblacion = new ArrayList<>();
 	}
 		
-	public void generadorCiudadanos(Seres seres,LinkedList<String> nombres) {
-		Seres ciudadano = new Seres(150.f, 200.5f);
+	public Seres generadorCiudadanos(Seres seres,LinkedList<String> nombres) {
+		Seres ciudadano = new Seres(150f);
+		return ciudadano;
 	}
-	
-		
-				
-		
-		
-		
-		
-		
-	
-	
-
 	
 }
