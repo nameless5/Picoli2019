@@ -31,5 +31,4 @@ public class Poblacion {
 	private void añadirMenorCreadoAlaLista(Seres ciudadano,ArrayList<Seres> menores) {
 		menores.add(ciudadano);
 	}
-	
 }
