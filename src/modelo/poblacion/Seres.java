@@ -113,6 +113,14 @@ public class Seres implements EstablecerNV{
 	public void setEsperanzaVida(float esperanzaVida) {
 		this.esperanzaVida = esperanzaVida;
 	}
+	
+	public float getNivelVida() {
+		return nivelVida;
+	}
+
+	public void setNivelVida(float nivelVida) {
+		this.nivelVida = nivelVida;
+	}
 
 	@Override
 	public void establecerNV() {
