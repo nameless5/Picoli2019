@@ -9,7 +9,7 @@ public class Estado  {
 	int numeroSeres;
 	float cantidadMin;
   
-	Seres yo = new Seres(3);
+	Seres yo = new Seres();
 
 	public boolean fallecimiento() {
 		boolean resultado = false;
