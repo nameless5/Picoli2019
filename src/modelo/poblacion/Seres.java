@@ -98,5 +98,4 @@ public class Seres {
 	public void setTipoEstado(EstadoSer tipoEstado) {
 		this.tipoEstado = tipoEstado;
 	}
-
 }
