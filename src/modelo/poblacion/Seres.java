@@ -2,14 +2,14 @@ package modelo.poblacion;
 
 import java.util.LinkedList;
 
-public class Seres implements EstablecerNV{
+public class Seres{
 	private String nombre;
 	private int edad;
 	private float subsidio;
 	private float ahorro;
 	private float esperanzaVida;
 	private float nivelVida;
-	LinkedList<String> nombres = new LinkedList();
+	LinkedList<String> nombres = new LinkedList<String>();
 	private String[] personas= {"Antonio","Paco","Pepe","Monica","Laura","Marta","Manolo","Maria","Pedro","Jesus",
 			"Fran","Ana","Raul","Victoria","SerRaro","Alien","Depredador","Pitufino","Rufino","Teresa"};
 	
@@ -100,11 +100,5 @@ public class Seres implements EstablecerNV{
 
 	public void setEsperanzaVida(float esperanzaVida) {
 		this.esperanzaVida = esperanzaVida;
-	}
-
-	@Override
-	public void establecerNV() {
-		// TODO Auto-generated method stub
-		
 	}
 }
