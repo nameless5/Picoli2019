@@ -25,6 +25,7 @@ public class Poblacion {
 	public Seres generadorCiudadanos(Seres seres,ArrayList<Seres> menores) {
 		Seres ciudadano = new Seres();
 		añadirMenorCreadoAlaLista(ciudadano, menores);
+		/*Revisión, también hay que añadirlo a la lista principal*/
 		return ciudadano;
 	}
 
