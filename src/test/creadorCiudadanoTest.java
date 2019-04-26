@@ -18,7 +18,7 @@ class creadorCiudadanoTest {
 	@Test
 	void test() {
 		boolean comprobador=false;
-		if(seres.getEdad()==0 && seres.getAhorro()==0 && seres.getSubsidio()==0) {
+		if(seres.getEdad()==0 && seres.getAhorro()==0) {
 			comprobador=true;
 		} else comprobador =false;
 		assertTrue(comprobador);

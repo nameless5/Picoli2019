@@ -98,4 +98,17 @@ public class Seres {
 	public void setTipoEstado(EstadoSer tipoEstado) {
 		this.tipoEstado = tipoEstado;
 	}
+
+	public void setEsperanzaVida(float esperanzaVida) {
+		this.esperanzaVida = esperanzaVida;
+	}
+
+	public void setNombres(LinkedList<String> nombres) {
+		this.nombres = nombres;
+	}
+
+	public void setPersonas(String[] personas) {
+		this.personas = personas;
+	}
+
 }
