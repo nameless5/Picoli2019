@@ -32,4 +32,5 @@ public class Poblacion {
 		menores.add(ciudadano);
 	}
 	
+	
 }
