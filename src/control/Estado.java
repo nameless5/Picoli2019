@@ -2,29 +2,49 @@ package control;
 
 import modelo.poblacion.Seres;
 
-public class Estado  {
-		
-	float demanda;
-	int numeroEmpresa;
-	int numeroSeres;
-	float cantidadMin;
-  
-	Seres yo = new Seres(3);
+public class Estado {
 
-	public boolean fallecimiento() {
+	private float demanda;
+	private int numeroSeres;
+	private int dineroActual;
+
+	public Estado(float demanda, int numeroSeres, int dineroActual) {
+		super();
+		this.demanda = demanda;
+		this.numeroSeres = numeroSeres;
+		this.dineroActual = dineroActual;
+	}
+
+	public boolean fallecimiento(Seres seres) {
 		boolean resultado = false;
-		if(yo.getNivelVida()>= yo.getEsperanzaVida()) {
+		if (seres.generarEdad() >= seres.getEsperanzaVida()) {
 			resultado = true;
 			return resultado;
 		}
 		return resultado;
 	}
+
+	public void pagarTrabajador() {
+
+	}
+
 	public void comprobarProduccion() {
-		//TODO
+		// TODO
 	}
+
 	public void comprobarPorcentajeTrabajadores() {
-		//TODO
+		// TODO
 	}
-	
-	
+
+	public float getDemanda() {
+		return demanda;
+	}
+
+	public int getNumeroSeres() {
+		return numeroSeres;
+	}
+
+	public int getDineroActual() {
+		return dineroActual;
+	}
 }
