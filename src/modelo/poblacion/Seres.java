@@ -113,15 +113,13 @@ public class Seres implements EstablecerNV{
 	public void setEsperanzaVida(float esperanzaVida) {
 		this.esperanzaVida = esperanzaVida;
 	}
-	
-	public float getNivelVida() {
-		return nivelVida;
-	}
 
-	public void setNivelVida(float nivelVida) {
-		this.nivelVida = nivelVida;
+	public void setNombres(LinkedList<String> nombres) {
+		this.nombres = nombres;
 	}
-
+	public void setPersonas(String[] personas) {
+		this.personas = personas;
+	}
 	@Override
 	public void establecerNV() {
 		// TODO Auto-generated method stub
