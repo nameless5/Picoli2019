@@ -13,13 +13,10 @@ class EstadoTest {
 	@Test
 	void testFallecimiento() {
 		Seres ser = new Seres();
-		float edad = 2;
-		float esperanzaVida = 3;
-
-		if (edad >= esperanzaVida) {
-			assertTrue(estado.fallecimiento(ser));
+		if (ser.getEdad()>=ser.getEsperanzaVida()) {
+			assertEquals(true, estado.fallecimiento(ser));
 		} else {
-			assertFalse(estado.fallecimiento(ser));
+			assertEquals(false, estado.fallecimiento(ser));
 		}
 	}
 

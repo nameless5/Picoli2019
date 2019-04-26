@@ -17,7 +17,7 @@ public class Estado {
 
 	public boolean fallecimiento(Seres seres) {
 		boolean resultado = false;
-		if (seres.generarEdad() >= seres.getEsperanzaVida()) {
+		if (seres.getEdad() >= seres.getEsperanzaVida()) {
 			resultado = true;
 			return resultado;
 		}
