@@ -14,7 +14,7 @@ public class Estado  {
 	int numeroEmpresa;
 	int numeroSeres;
 	float cantidadMin;
- 
+  
 	Seres yo = new Seres(3, 100);
 
 	public boolean fallecimiento() {
