@@ -1,8 +1,12 @@
 package modelo.empresa;
 
 public enum Capacidad {
- pequeña/*(100)*/,mediana/*(400)*/, grande/*(100)*/;
+ grande (1000);
  private int valor;
+
+private Capacidad(int valor) {
+	this.valor = valor;
+}
 
 public int getValor() {
 	return valor;
