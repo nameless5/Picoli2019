@@ -15,12 +15,10 @@ public class Estado  {
 	int numeroSeres;
 	float cantidadMin;
  
-	Seres yo = new Seres(3);
+	Seres yo = new Seres();
 	System.out.println(yo.getNombre());
 	
 	}	
-	
-	
 	
 	public void fallecimmiento() {
 		

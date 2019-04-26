@@ -1,6 +1,10 @@
 package modelo.poblacion;
 
+import java.net.StandardSocketOptions;
+import java.util.ArrayList;
 import java.util.LinkedList;
+
+import control.Poblacion;
 
 public class Seres implements EstablecerNV{
 	private String nombre;
@@ -13,6 +17,47 @@ public class Seres implements EstablecerNV{
 	private String[] personas= {"Antonio","Paco","Pepe","Monica","Laura","Marta","Manolo","Maria","Pedro","Jesus",
 			"Fran","Ana","Raul","Victoria","SerRaro","Alien","Depredador","Pitufino","Rufino","Teresa"};
 	
+	public Seres() {
+		super();
+		nombre = generarNombreAleatorio(nombres);
+		edad = generarEdad();
+		this.subsidio = generarSubsidio();
+		this.ahorro = generarAhorro();
+		this.esperanzaVida = generarEsperanzaVida();
+	}
+	public String generarNombreAleatorio(LinkedList<String> nombres) {
+		anadirNombresAlaLista(nombres);
+		int min=1;
+		int max=nombres.size();
+		String aleatorio =nombres.get((int) (Math.random()*(max-min)+min));
+		return aleatorio;
+	}
+	public int generarEdad() {
+		edad=0;
+		return (int) edad;
+		
+	}
+	public int generarSubsidio() {
+		subsidio=0;
+		return (int) subsidio;
+	};
+	public int generarAhorro() {
+		ahorro=0;
+		return (int) ahorro;
+	};
+	public int generarEsperanzaVida() {
+		int esperanzaVidaMin=0;
+		int esperanzaVidaMax=90;
+		int esperanzaVida = (int) (Math.random()*(esperanzaVidaMax-esperanzaVidaMin)+esperanzaVidaMin);
+		return (int) esperanzaVida;
+	}
+	public void anadirNombresAlaLista(LinkedList<String> nombres) {
+		for (int i = 0; i < personas.length; i++) {
+			String nombresRecorridos=personas[i];
+			nombres.add(nombresRecorridos);
+		}
+	}
+
 	public LinkedList<String> getNombres() {
 		return nombres;
 	}
@@ -28,40 +73,7 @@ public class Seres implements EstablecerNV{
 	public void setNivelVida(float nivelVida) {
 		this.nivelVida = nivelVida;
 	}
-
-	public Seres(float subsidio) {
-		super();
-		nombre = generarNombreAleatorio(nombres);
-		edad = generarEdad();
-		this.subsidio = subsidio;
-		this.ahorro = generarAhorro();
-		this.esperanzaVida = generarEdad();
-	}
 	
-	public int generarEdad() {
-		edad=0;
-		return (int) edad;
-		
-	}
-	public int generarAhorro() {
-		ahorro=0;
-		return (int) ahorro;
-	};
-	public void anadirNombresAlaLista(LinkedList<String> nombres) {
-		for (int i = 0; i < personas.length; i++) {
-			String nombresRecorridos=personas[i];
-			nombres.add(nombresRecorridos);
-		}
-	}
-	
-	public String generarNombreAleatorio(LinkedList<String> nombres) {
-		anadirNombresAlaLista(nombres);
-		int min=1;
-		int max=nombres.size();
-		String aleatorio =nombres.get((int) (Math.random()*(max-min)+min));
-		return aleatorio;
-	}
-
 	public String getNombre() {
 		return nombre;
 	}

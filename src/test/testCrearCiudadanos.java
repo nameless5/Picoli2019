@@ -18,7 +18,7 @@ class testCrearCiudadanos {
 	ArrayList<Seres> menores;
 	@Test
 	void test() {
-		Seres serecito = new Seres(150f);
+		Seres serecito = new Seres();
 		String nombreDelSer=serecito.getNombre();
 		menores.add(serecito);
 	}
