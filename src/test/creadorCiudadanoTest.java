@@ -23,4 +23,5 @@ class creadorCiudadanoTest {
 		} else comprobador =false;
 		assertTrue(comprobador);
 	}
+	
 }
