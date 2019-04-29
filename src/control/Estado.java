@@ -1,9 +1,16 @@
 package control;
 
+import java.util.ArrayDeque;
+import java.util.Stack;
+
+import modelo.empresa.Factorias;
 import modelo.poblacion.Seres;
 
 public class Estado {
-
+	
+	Factorias factoria;
+	Poblacion poblacion;
+	
 	private float demanda;
 	private int numeroSeres;
 	private int dineroActual;
@@ -23,6 +30,7 @@ public class Estado {
 		}
 		return resultado;
 	}
+	
 
 	public void pagarTrabajador() {
 
@@ -47,4 +55,9 @@ public class Estado {
 	public int getDineroActual() {
 		return dineroActual;
 	}
+	
+	private void contratarTrabajador(ArrayDeque<Seres> demandantes, Stack<Seres> pilaTrabajador) {
+		
+	}
+	
 }
