@@ -7,19 +7,21 @@ import java.util.LinkedList;
 
 import org.junit.jupiter.api.Test;
 
-import control.Estado;
 import control.Poblacion;
-import junit.framework.Assert;
 import modelo.poblacion.Seres;
-class testCrearCiudadanos {
-	Seres ser;
-	Estado estadito;
-	Poblacion poblacionn;
+
+class creadorCiudadanoTest {
+	Seres seres = new Seres();
+	Poblacion poblacion = new Poblacion();
 	ArrayList<Seres> menores;
+	
 	@Test
 	void test() {
-		Seres serecito = new Seres();
-		String nombreDelSer=serecito.getNombre();
-		menores.add(serecito);
+		boolean comprobador=false;
+		if(seres.getEdad()==0 && seres.getAhorro()==0) {
+			comprobador=true;
+		} else comprobador =false;
+		assertTrue(comprobador);
 	}
+	
 }
