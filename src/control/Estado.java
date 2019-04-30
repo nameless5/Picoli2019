@@ -36,10 +36,6 @@ public class Estado {
 
 	}
 
-	public void comprobarProduccion() {
-		// TODO
-	}
-
 	public void comprobarPorcentajeTrabajadores() {
 		// TODO
 	}
