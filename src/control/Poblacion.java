@@ -17,6 +17,7 @@ public class Poblacion {
 		menores = new ArrayList<>();
 		jubilados = new ArrayList<>();
 		poblacion = new ArrayList<>();
+		demandantes = new ArrayDeque<>();
 	}
 
 	public Seres generadorCiudadanos(Seres seres, ArrayList<Seres> menores) {
@@ -41,17 +42,28 @@ public class Poblacion {
 			int respuesta = getRespuesta(valor);
 			switch (respuesta) {
 			case 0:
-				poblacion.get(i).setTipoEstado(EstadoSer.menor);
-				menores.add(poblacion.get(i));
+				for (int j = 0; j < menores.size(); j++) {
+					if (!menores.contains(poblacion.get(i))) {
+						poblacion.get(i).setTipoEstado(EstadoSer.menor);
+						menores.add(poblacion.get(i));
+					}
+				}
 				break;
 			case 1:
-				poblacion.get(i).setTipoEstado(EstadoSer.desempleado);
-				demandantes.offer(poblacion.get(i));
+				for (int j = 0; j < demandantes.size(); j++) {
+					if (!demandantes.contains(poblacion.get(i))) {
+						poblacion.get(i).setTipoEstado(EstadoSer.desempleado);
+						demandantes.offer(poblacion.get(i));
+					}
+				}
 				break;
 			case 2:
-				poblacion.get(i).setTipoEstado(EstadoSer.jubilado);
-				jubilados.add(poblacion.get(i));
-				
+				for (int j = 0; j < jubilados.size(); j++) {
+					if (!jubilados.contains(poblacion.get(i))) {
+						poblacion.get(i).setTipoEstado(EstadoSer.jubilado);
+						jubilados.add(poblacion.get(i));
+					}
+				}
 			default:
 				break;
 			}
