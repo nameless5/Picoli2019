@@ -55,11 +55,6 @@ public class Seres {
 		ahorro = 0;
 		return (int) ahorro;
 	}
-	public void envejecer(ArrayList<Seres> poblacion) {
-		for (int i = 0; i < poblacion.size(); i++) {
-			poblacion.get(i).setEdad(edad+1);
-		}
-	}
 
 	public LinkedList<String> getNombres() {
 		return nombres;
