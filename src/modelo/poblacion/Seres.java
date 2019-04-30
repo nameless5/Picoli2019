@@ -4,6 +4,7 @@ import java.util.LinkedList;
 
 public class Seres {
 	private String nombre;
+	private int id;
 	private int edad;
 	private float ahorro;
 	private float esperanzaVida;
@@ -97,5 +98,13 @@ public class Seres {
 
 	public void setTipoEstado(EstadoSer tipoEstado) {
 		this.tipoEstado = tipoEstado;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 }
