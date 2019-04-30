@@ -12,6 +12,12 @@ public class Factorias {
 		super();
 		this.pilaTrabajador = new Stack<Seres>();
 	}
+	
+	public float comprobarProduccion(Stack<Seres> pilaTrabajador) {
+		int produccionPersona = 1000;
+		this.produccion=pilaTrabajador.size() * produccionPersona;
+		return produccion;
+	}
 
 	public float getProduccion() {
 		return produccion;
@@ -19,6 +25,14 @@ public class Factorias {
 
 	public Stack<Seres> getPilaTrabajador() {
 		return pilaTrabajador;
+	}
+
+	public void setProduccion(float produccion) {
+		this.produccion = produccion;
+	}
+
+	public void setPilaTrabajador(Stack<Seres> pilaTrabajador) {
+		this.pilaTrabajador = pilaTrabajador;
 	}
 
 }
