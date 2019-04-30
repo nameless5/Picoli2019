@@ -2,7 +2,7 @@ package modelo.poblacion;
 
 public enum EstadoSer {
 	
-	menor(365, 365, "menor"), desempleado(365, 182.5, "desempleado"), trabajador(365, 730, "trabajador"),
+	menor(365, 365, "menor"), desempleado(365, 182.5, "desempleado"), trabajador(365, 365, "trabajador"),
 	jubilado(182.5f, 182.5, "jubilado");
 
 	private float nivelVida;
