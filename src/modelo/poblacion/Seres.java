@@ -1,5 +1,6 @@
 package modelo.poblacion;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class Seres {
@@ -53,7 +54,7 @@ public class Seres {
 	public int generarAhorro() {
 		ahorro = 0;
 		return (int) ahorro;
-	};
+	}
 
 	public LinkedList<String> getNombres() {
 		return nombres;
