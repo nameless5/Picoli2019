@@ -14,8 +14,9 @@ public class Seres {
 			"Jesus", "Fran", "Ana", "Raul", "Victoria", "SerRaro", "Alien", "Depredador", "Pitufino", "Rufino",
 			"Teresa" };
 
-	public Seres() {
+	public Seres(int id) {
 		super();
+		this.id = id;
 		this.nombre = generarNombreAleatorio(nombres);
 		this.edad = generarEdad();
 		this.ahorro = generarAhorro();
