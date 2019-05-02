@@ -1,10 +1,10 @@
 package modelo.poblacion;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class Seres {
 	private String nombre;
+	private int id = 0;
 	private int edad;
 	private float ahorro;
 	private float esperanzaVida;
@@ -16,11 +16,17 @@ public class Seres {
 
 	public Seres() {
 		super();
+		this.id = sumarId();
 		this.nombre = generarNombreAleatorio(nombres);
 		this.edad = generarEdad();
 		this.ahorro = generarAhorro();
 		this.esperanzaVida = generarEsperanzaVida();
 		this.tipoEstado = EstadoSer.menor;
+	}
+
+	public int sumarId() {
+		this.id = this.id++;
+		return this.id;
 	}
 
 	public String generarNombreAleatorio(LinkedList<String> nombres) {
@@ -98,5 +104,13 @@ public class Seres {
 
 	public void setTipoEstado(EstadoSer tipoEstado) {
 		this.tipoEstado = tipoEstado;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 }
