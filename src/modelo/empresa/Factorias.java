@@ -5,17 +5,17 @@ import java.util.Stack;
 import modelo.poblacion.Seres;
 
 public class Factorias {
-	private float produccion;
+	private float produccion = 1000;
 	private Stack<Seres> pilaTrabajador;
 
 	public Factorias() {
 		super();
 		this.pilaTrabajador = new Stack<Seres>();
 	}
-	
+
 	public float comprobarProduccion(Stack<Seres> pilaTrabajador) {
 		int produccionPersona = 1000;
-		this.produccion=pilaTrabajador.size() * produccionPersona;
+		this.produccion = pilaTrabajador.size() * produccionPersona;
 		return produccion;
 	}
 
