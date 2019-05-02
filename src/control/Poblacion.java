@@ -83,4 +83,9 @@ public class Poblacion {
 		}
 		return respuesta;
 	}
+	public void envejecer() {
+		for (Seres ser : this.poblacion) {
+			ser.setEdad(ser.getEdad()+1);
+		}
+	}
 }
