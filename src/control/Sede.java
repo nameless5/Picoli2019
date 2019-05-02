@@ -11,11 +11,26 @@ public class Sede {
 		super();
 		this.factorias = new ArrayList<>();
 	}
-	
+
 	public void crearFactoria() {
 		this.factorias.add(new Factorias());
 	}
 	
+	public int produccionTotal() {
+		int produccion = 0;
+		for (Factorias factoria : factorias) {
+			factoria.comprobarProduccion();
+		}
+		return produccion;
+	}
+
+	public void numTrabajadores() {
+		int contador = 0;
+		for (Factorias factoria : factorias) {
+			contador = contador + factoria.getPilaTrabajador().size();
+		}
+
+	}
 
 	public ArrayList<Factorias> getFactorias() {
 		return factorias;

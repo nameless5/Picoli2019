@@ -5,7 +5,7 @@ import java.util.Stack;
 import modelo.poblacion.Seres;
 
 public class Factorias {
-	private float produccion = 1000;
+	private int produccionEmpleado=1000;
 	private Stack<Seres> pilaTrabajador;
 
 	public Factorias() {
@@ -13,22 +13,24 @@ public class Factorias {
 		this.pilaTrabajador = new Stack<Seres>();
 	}
 
-	public float comprobarProduccion(Stack<Seres> pilaTrabajador) {
-		int produccionPersona = 1000;
-		this.produccion = pilaTrabajador.size() * produccionPersona;
+	public int  comprobarProduccion() {
+		 int produccion = pilaTrabajador.size() * this.produccionEmpleado;
 		return produccion;
 	}
+	
+	public int numeroTrabajadores() {
+		int empleados;
+		empleados = 1000 - this.pilaTrabajador.size();
+		return empleados;
+		
+	}
 
-	public float getProduccion() {
-		return produccion;
+	public int getProduccion() {
+		return produccionEmpleado;
 	}
 
 	public Stack<Seres> getPilaTrabajador() {
 		return pilaTrabajador;
-	}
-
-	public void setProduccion(float produccion) {
-		this.produccion = produccion;
 	}
 
 	public void setPilaTrabajador(Stack<Seres> pilaTrabajador) {
