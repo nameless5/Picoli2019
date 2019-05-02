@@ -20,6 +20,10 @@ public class Poblacion {
 		demandantes = new ArrayDeque<>();
 	}
 
+	public void contratarDemandante() {
+
+	}
+
 	public Seres generadorCiudadanos(Seres seres, ArrayList<Seres> menores) {
 		Seres ciudadano = new Seres();
 		añadirMenorCreadoAlaLista(ciudadano, menores);

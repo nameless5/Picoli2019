@@ -4,7 +4,7 @@ import java.util.LinkedList;
 
 public class Seres {
 	private String nombre;
-	private int id;
+	private int id = 0;
 	private int edad;
 	private float ahorro;
 	private float esperanzaVida;
@@ -14,14 +14,19 @@ public class Seres {
 			"Jesus", "Fran", "Ana", "Raul", "Victoria", "SerRaro", "Alien", "Depredador", "Pitufino", "Rufino",
 			"Teresa" };
 
-	public Seres(int id) {
+	public Seres() {
 		super();
-		this.id = id;
+		this.id = generarId();
 		this.nombre = generarNombreAleatorio(nombres);
 		this.edad = generarEdad();
 		this.ahorro = generarAhorro();
 		this.esperanzaVida = generarEsperanzaVida();
 		this.tipoEstado = EstadoSer.menor;
+	}
+
+	private int generarId() {
+		this.id = this.id + 1;
+		return this.id;
 	}
 
 	public String generarNombreAleatorio(LinkedList<String> nombres) {
