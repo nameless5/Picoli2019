@@ -23,8 +23,12 @@ public class Poblacion {
 	public Seres generadorCiudadanos(Seres seres, ArrayList<Seres> menores) {
 		Seres ciudadano = new Seres();
 		añadirMenorCreadoAlaLista(ciudadano, menores);
+
+		/* Revisión, también hay que añadirlo a la lista principal */
+
 		añadirCiudadanoCreadoAlaLista(ciudadano, poblacion);
 		/* Revisión: Se añaden a las dos listas del tirón */
+
 		return ciudadano;
 	}
 
@@ -83,9 +87,11 @@ public class Poblacion {
 		}
 		return respuesta;
 	}
+
 	public void envejecer() {
 		for (Seres ser : this.poblacion) {
-			ser.setEdad(ser.getEdad()+1);
+			ser.setEdad(ser.getEdad() + 1);
+
 		}
 	}
 }
