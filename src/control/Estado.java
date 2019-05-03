@@ -13,11 +13,11 @@ public class Estado {
 	Factorias factoria;
 	Poblacion poblacion;
 	
-	private float demanda;
+	private double demanda;
 	private int numeroSeres;
-	private float dineroActual;
+	private double dineroActual;
 
-	public Estado(float demanda, int numeroSeres, int dineroActual) {
+	public Estado(double demanda, int numeroSeres, double dineroActual) {
 		super();
 		this.demanda = demanda;
 		this.numeroSeres = numeroSeres;
@@ -60,7 +60,7 @@ public class Estado {
 		// TODO
 	}
 
-	public float getDemanda() {
+	public double getDemanda() {
 		return demanda;
 	}
 
@@ -68,7 +68,7 @@ public class Estado {
 		return numeroSeres;
 	}
 
-	public float getDineroActual() {
+	public double getDineroActual() {
 		return dineroActual;
 	}
 	

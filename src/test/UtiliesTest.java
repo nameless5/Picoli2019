@@ -10,12 +10,12 @@ class UtiliesTest {
 
 	@Test
 	void testObtenerAleatorioInt() {
-		Utilies utilies=new Utilies();
+		new Utilies();
 		int max=2;
 		int min=0;
 		boolean maxAlcanzado=false,minAlcanzado=false;
 		for (int i = 0; i < 100; i++) {
-			int obtenerAleatorio = utilies.obtenerAleatorio(max);
+			int obtenerAleatorio = Utilies.obtenerAleatorio(max);
 			assertTrue(obtenerAleatorio<=max&&obtenerAleatorio>=min);
 			if(obtenerAleatorio==max) {
 				maxAlcanzado=true;
@@ -30,12 +30,12 @@ class UtiliesTest {
 
 	@Test
 	void testObtenerAleatorioIntInt() {
-		Utilies utilies=new Utilies();
+		new Utilies();
 		int max=2;
 		int min=1;
 		boolean maxAlcanzado=false,minAlcanzado=false;
 		for (int i = 0; i < 100; i++) {
-			int obtenerAleatorio = utilies.obtenerAleatorio(min, max);
+			int obtenerAleatorio = Utilies.obtenerAleatorio(min, max);
 			assertTrue(obtenerAleatorio<=max&&obtenerAleatorio>=min);
 			if(obtenerAleatorio==max) {
 				maxAlcanzado=true;

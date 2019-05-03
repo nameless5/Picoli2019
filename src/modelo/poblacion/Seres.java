@@ -21,7 +21,7 @@ public class Seres {
 		this.id = sumarId();
 		this.nombre = generarNombreAleatorio(nombres);
 		this.edad = generarEdad();
-		this.ahorro = generarAhorro();
+		this.ahorro = 0;
 		this.esperanzaVida = generarEsperanzaVida();
 		this.tipoEstado = EstadoSer.menor;
 	}
@@ -30,7 +30,7 @@ public class Seres {
 		this.nombre = generarNombreAleatorio(nombres);
 		this.id = sumarId();
 		this.edad = edad;
-		this.ahorro = generarAhorro();
+		this.ahorro = 0;
 		this.esperanzaVida = generarEsperanzaVida();
 		this.tipoEstado = tipoEstado;
 	}
@@ -49,7 +49,7 @@ public class Seres {
 	}
 
 	public int generarEsperanzaVida() {
-		int esperanzaVidaMin = 0;
+		int esperanzaVidaMin = this.edad;
 		int esperanzaVidaMax = 90;
 		int esperanzaVida = (int) (Math.random() * (esperanzaVidaMax - esperanzaVidaMin) + esperanzaVidaMin);
 		return (int) esperanzaVida;
@@ -66,11 +66,6 @@ public class Seres {
 		edad = 0;
 		return (int) edad;
 
-	}
-
-	public int generarAhorro() {
-		ahorro = 0;
-		return (int) ahorro;
 	}
 	
 	public float calcularParteProporcional(Seres ser) {

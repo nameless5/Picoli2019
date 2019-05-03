@@ -14,7 +14,8 @@ public class Poblacion {
 	private ArrayList<Seres> poblacion;
 	private ArrayDeque<Seres> demandantes;
 
-	public Poblacion(int menoresInicial, int trabajadoresIncial, int jubiladosInicial) {
+	public Poblacion() {
+		int menoresInicial = 30, trabajadoresIncial = 100, jubiladosInicial = 20;
 		menores = new ArrayList<>();
 		jubilados = new ArrayList<>();
 		poblacion = new ArrayList<>();
@@ -49,54 +50,6 @@ public class Poblacion {
 
 	private void añadirCiudadanoCreadoAlaLista(Seres ciudadano, ArrayList<Seres> poblacion) {
 		poblacion.add(ciudadano);
-	}
-
-	private void establecerDestinoCiudadano(ArrayList<Seres> poblacion) {
-		for (int i = 0; i < poblacion.size(); i++) {
-			int valor = poblacion.get(i).getEdad();
-			int respuesta = getRespuesta(valor);
-			switch (respuesta) {
-			case 0:
-				for (int j = 0; j < menores.size(); j++) {
-					if (!menores.contains(poblacion.get(i))) {
-						poblacion.get(i).setTipoEstado(EstadoSer.menor);
-						menores.add(poblacion.get(i));
-					}
-				}
-				break;
-			case 1:
-				for (int j = 0; j < demandantes.size(); j++) {
-					if (!demandantes.contains(poblacion.get(i))) {
-						poblacion.get(i).setTipoEstado(EstadoSer.desempleado);
-						demandantes.offer(poblacion.get(i));
-					}
-				}
-				break;
-			case 2:
-				for (int j = 0; j < jubilados.size(); j++) {
-					if (!jubilados.contains(poblacion.get(i))) {
-						poblacion.get(i).setTipoEstado(EstadoSer.jubilado);
-						jubilados.add(poblacion.get(i));
-					}
-				}
-			default:
-				break;
-			}
-		}
-	}
-
-	private int getRespuesta(int valor) {
-		int respuesta;
-		if (valor < 18) {
-			respuesta = 0;
-		} else {
-			if (valor > 65) {
-				respuesta = 2;
-			} else {
-				respuesta = 1;
-			}
-		}
-		return respuesta;
 	}
 
 	public void envejecer() {
