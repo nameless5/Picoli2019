@@ -94,7 +94,7 @@ public class Estado {
 			if(edad>=65) {
 				demandantes.remove(seres);
 			}
-			
 		}
 	}
+	
 }
