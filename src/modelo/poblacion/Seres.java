@@ -2,12 +2,15 @@ package modelo.poblacion;
 
 import java.util.LinkedList;
 
+import control.Estado;
+
 public class Seres {
 	private String nombre;
 	private int id = 0;
 	private int edad;
 	private float ahorro;
 	private float esperanzaVida;
+	private int necesidadVital = 365;
 	private EstadoSer tipoEstado;
 	LinkedList<String> nombres = new LinkedList<String>();
 	private String[] personas = { "Antonio", "Paco", "Pepe", "Monica", "Laura", "Marta", "Manolo", "Maria", "Pedro",
@@ -61,6 +64,19 @@ public class Seres {
 		ahorro = 0;
 		return (int) ahorro;
 	}
+	
+	public float calcularParteProporcional(Seres ser) {
+		Estado estado = new Estado(0, 0, 0);
+		float resultado = 0;
+		if (estado.pagarTrabajador()< ser.getNecesidadVital()) {
+		resultado = ser.getNecesidadVital()/estado.pagarTrabajador();
+		}
+		return resultado;
+	}
+	
+	public float reducirEsperanzaVida(Seres ser) {
+		return ser.getEsperanzaVida()-ser.calcularParteProporcional(ser); 
+	}
 
 	public LinkedList<String> getNombres() {
 		return nombres;
@@ -112,5 +128,9 @@ public class Seres {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+	
+	public int getNecesidadVital() {
+		return necesidadVital;
 	}
 }
