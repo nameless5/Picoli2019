@@ -1,6 +1,8 @@
 package control;
 
 import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Stack;
 
 import modelo.empresa.Factorias;
@@ -22,15 +24,33 @@ public class Estado {
 		this.dineroActual = dineroActual;
 	}
 
-	public boolean fallecimiento(Seres seres) {
+	public boolean isFallecido(Seres seres) {
 		boolean resultado = false;
 		if (seres.getEdad() >= seres.getEsperanzaVida()) {
 			resultado = true;
-			return resultado;
 		}
 		return resultado;
 	}
 	
+	public void eliminarFallecidos(ArrayList<Seres> poblacion, ArrayList<Seres> jubilados) {
+		for (int i = 0; i < poblacion.size(); i++) {
+			Seres persona = poblacion.get(i);
+			if(isFallecido(persona)) {
+				poblacion.remove(persona);
+				if(jubilados.contains(persona)) {
+					float ahorro = persona.getAhorro();
+					jubilados.remove(persona);
+					setDineroActual((int) (this.dineroActual+ahorro));
+					
+				}
+			}
+		}
+	}
+	
+
+	public void setDineroActual(int dineroActual) {
+		this.dineroActual = dineroActual;
+	}
 
 	public void pagarTrabajador() {
 
@@ -60,12 +80,21 @@ public class Estado {
 		
 	}
 	
-	public void jubilarTrabajador(Stack<Seres> pilaTrabajador) {
+	public void jubilarTrabajador(Stack<Seres> pilaTrabajador, ArrayDeque<Seres> demandantes) {
 		for (int i = 0; i < pilaTrabajador.size(); i++) {
 			int edad = pilaTrabajador.get(i).getEdad();
 			if(edad>=65) {
 				pilaTrabajador.remove(i);
 			}
+		}
+		
+		for (Iterator iterator = demandantes.iterator(); iterator.hasNext();) {
+			Seres seres = (Seres) iterator.next();
+			int edad = seres.getEdad();
+			if(edad>=65) {
+				demandantes.remove(seres);
+			}
+			
 		}
 	}
 	
