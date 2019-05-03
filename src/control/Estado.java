@@ -1,5 +1,6 @@
 package control;
 
+import java.lang.reflect.Array;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -10,15 +11,16 @@ import modelo.poblacion.EstadoSer;
 import modelo.poblacion.Seres;
 
 public class Estado {
-	
+
 	Factorias factoria;
 	Poblacion poblacion;
-	
-	private float demanda;
-	private int numeroSeres;
-	private float dineroActual;
+	Sede sede;
 
-	public Estado(float demanda, int numeroSeres, int dineroActual) {
+	private double demanda;
+	private int numeroSeres;
+	private double dineroActual;
+
+	public Estado(double demanda, int numeroSeres, double dineroActual) {
 		super();
 		this.demanda = demanda;
 		this.numeroSeres = numeroSeres;
@@ -32,22 +34,22 @@ public class Estado {
 		}
 		return resultado;
 	}
-	
+
 	public void eliminarFallecidos(ArrayList<Seres> poblacion, ArrayList<Seres> jubilados) {
 		for (int i = 0; i < poblacion.size(); i++) {
 			Seres persona = poblacion.get(i);
-			if(isFallecido(persona)) {
+			if (isFallecido(persona)) {
 				poblacion.remove(persona);
-				if(jubilados.contains(persona)) {
+				if (jubilados.contains(persona)) {
 					float ahorro = persona.getAhorro();
 					jubilados.remove(persona);
-					setDineroActual((int) (this.dineroActual+ahorro));
-					
+					setDineroActual((int) (this.dineroActual + ahorro));
+
 				}
 			}
 		}
 	}
-	
+
 	public void setDineroActual(int dineroActual) {
 		this.dineroActual = dineroActual;
 	}
@@ -60,7 +62,7 @@ public class Estado {
 		// TODO
 	}
 
-	public float getDemanda() {
+	public double getDemanda() {
 		return demanda;
 	}
 
@@ -68,18 +70,17 @@ public class Estado {
 		return numeroSeres;
 	}
 
-	public float getDineroActual() {
+	public double getDineroActual() {
 		return dineroActual;
 	}
-	
+
 	public void contratarTrabajador(ArrayDeque<Seres> demandantes, Stack<Seres> pilaTrabajador) {
-		//if(getDemanda()>factoria.getProduccion()) { /*Hay que obtener el numero concreto de gente a emplear*/
-			Seres contratado = demandantes.poll();
-			pilaTrabajador.push(contratado);
-		//}
-		
+		// if(getDemanda()>factoria.getProduccion()) { /*Hay que obtener el numero
+		// concreto de gente a emplear*/
+		Seres contratado = demandantes.poll();
+		pilaTrabajador.push(contratado);
 	}
-	
+
 	public void jubilarTrabajador(Stack<Seres> pilaTrabajador, ArrayDeque<Seres> demandantes) {
 		for (int i = 0; i < pilaTrabajador.size(); i++) {
 			int edad = pilaTrabajador.get(i).getEdad();

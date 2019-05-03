@@ -23,7 +23,7 @@ public class Seres {
 		this.id = sumarId();
 		this.nombre = generarNombreAleatorio(nombres);
 		this.edad = generarEdad();
-		this.ahorro = generarAhorro();
+		this.ahorro = 0;
 		this.esperanzaVida = generarEsperanzaVida();
 		this.tipoEstado = EstadoSer.menor;
 	}
@@ -33,7 +33,7 @@ public class Seres {
 		this.nombre = generarNombreAleatorio(nombres);
 		this.id = sumarId();
 		this.edad = edad;
-		this.ahorro = generarAhorro();
+		this.ahorro = 0;
 		this.esperanzaVida = generarEsperanzaVida();
 		this.tipoEstado = tipoEstado;
 	}
@@ -52,7 +52,7 @@ public class Seres {
 	}
 
 	public int generarEsperanzaVida() {
-		int esperanzaVidaMin = 0;
+		int esperanzaVidaMin = this.edad;
 		int esperanzaVidaMax = 90;
 		int esperanzaVida = (int) (Math.random() * (esperanzaVidaMax - esperanzaVidaMin) + esperanzaVidaMin);
 		return (int) esperanzaVida;
@@ -76,7 +76,7 @@ public class Seres {
 		return (int) ahorro;
 	}
 
-	public float calcularParteProporcional(ArrayList<Seres> poblacion, Estado estado, Poblacion poblacioon,
+	public void calcularParteProporcional(ArrayList<Seres> poblacion, Estado estado, Poblacion poblacioon,
 			EstadoSer estadoSer) {
 		for (int i = 0; i < poblacion.size(); i++) {
 			float nv = obtenerNivelVida(poblacion, i);
@@ -87,25 +87,24 @@ public class Seres {
 				if (ahorro == 0) {
 					cambiarVida(poblacion, i, reduccion);
 				} else {
-					float diferencia = poblacion.get(i).getAhorro() - nv;
+					float diferencia =  nv - poblacion.get(i).getAhorro() ;
 					float porcentaje = diferencia / nv;
-					reduccion = resultado * reduccion;
+					reduccion = porcentaje * reduccion;
 					cambiarVida(poblacion, i, reduccion);
 				}
-				resultado = tipoEstado.getNivelVida() / ahorro;
 			}
 		}
-		return ahorro;
 	}
 
 	private void cambiarVida(ArrayList<Seres> poblacion, int i, float reduccion) {
 		float esperanzaNueva = poblacion.get(i).getEsperanzaVida() - reduccion;
 		poblacion.get(i).setEsperanzaVida(esperanzaNueva);
 	}
-	
+
 	private float obtenerNivelVida(ArrayList<Seres> poblacion, int i) {
 		return poblacion.get(i).tipoEstado.getNivelVida();
 	}
+
 	public void setEsperanzaVida(float esperanzaVida) {
 		this.esperanzaVida = esperanzaVida;
 	}

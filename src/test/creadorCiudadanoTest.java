@@ -12,7 +12,7 @@ import modelo.poblacion.Seres;
 
 class creadorCiudadanoTest {
 	Seres seres = new Seres();
-	Poblacion poblacion = new Poblacion(0, 0, 0);
+	Poblacion poblacion = new Poblacion();
 	ArrayList<Seres> menores;
 	
 	@Test
