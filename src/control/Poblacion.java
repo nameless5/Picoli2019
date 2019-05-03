@@ -2,6 +2,8 @@ package control;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Stack;
 
 import modelo.poblacion.EstadoSer;
 import modelo.poblacion.Seres;
@@ -12,12 +14,14 @@ public class Poblacion {
 	private ArrayList<Seres> jubilados;
 	private ArrayList<Seres> poblacion;
 	private ArrayDeque<Seres> demandantes;
+	private ArrayList<Integer> recienJubilados;
 
 	public Poblacion() {
 		menores = new ArrayList<>();
 		jubilados = new ArrayList<>();
 		poblacion = new ArrayList<>();
 		demandantes = new ArrayDeque<>();
+		recienJubilados = new ArrayList<>();
 	}
 
 	public Seres generadorCiudadanos(Seres seres, ArrayList<Seres> menores) {
@@ -93,5 +97,26 @@ public class Poblacion {
 			ser.setEdad(ser.getEdad() + 1);
 
 		}
+	}
+
+	public ArrayList<Integer> jubilarTrabajador() {
+		this.recienJubilados.clear();
+		for (int i = 0; i < poblacion.size(); i++) {
+			Seres persona = poblacion.get(i);
+			if (persona.getEdad() >= 65 && (persona.getTipoEstado() == EstadoSer.trabajador
+					|| persona.getTipoEstado() == EstadoSer.desempleado)) {
+				recienJubilados.add(persona.getId());
+				persona.setTipoEstado(EstadoSer.jubilado);
+			}
+		}
+		for (Iterator iterator = demandantes.iterator(); iterator.hasNext();) {
+			Seres ser = (Seres) iterator.next();
+			if (recienJubilados.contains(ser.getId())) {
+				iterator.remove();
+			}
+		}
+
+		return recienJubilados;
+
 	}
 }
