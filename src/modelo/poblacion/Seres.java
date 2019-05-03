@@ -10,7 +10,6 @@ public class Seres {
 	private int edad;
 	private float ahorro;
 	private float esperanzaVida;
-	private int necesidadVital = 365;
 	private EstadoSer tipoEstado;
 	LinkedList<String> nombres = new LinkedList<String>();
 	private String[] personas = { "Antonio", "Paco", "Pepe", "Monica", "Laura", "Marta", "Manolo", "Maria", "Pedro",
@@ -25,6 +24,15 @@ public class Seres {
 		this.ahorro = generarAhorro();
 		this.esperanzaVida = generarEsperanzaVida();
 		this.tipoEstado = EstadoSer.menor;
+	}
+	public Seres(int edad, EstadoSer tipoEstado) {
+		super();
+		this.nombre = generarNombreAleatorio(nombres);
+		this.id = sumarId();
+		this.edad = edad;
+		this.ahorro = generarAhorro();
+		this.esperanzaVida = generarEsperanzaVida();
+		this.tipoEstado = tipoEstado;
 	}
 
 	public int sumarId() {
@@ -68,14 +76,14 @@ public class Seres {
 	public float calcularParteProporcional(Seres ser) {
 		Estado estado = new Estado(0, 0, 0);
 		float resultado = 0;
-		if (estado.pagarTrabajador()< ser.getNecesidadVital()) {
-		resultado = ser.getNecesidadVital()/estado.pagarTrabajador();
+		if (estado.pagarTrabajador()< ser.tipoEstado.getNivelVida()) {
+		resultado = ser.tipoEstado.getNivelVida()/estado.pagarTrabajador();
 		}
 		return resultado;
 	}
 	
 	public float reducirEsperanzaVida(Seres ser) {
-		return ser.getEsperanzaVida()-ser.calcularParteProporcional(ser); 
+		return ser.tipoEstado.getNivelVida()-ser.calcularParteProporcional(ser); 
 	}
 
 	public LinkedList<String> getNombres() {
@@ -128,9 +136,5 @@ public class Seres {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-	
-	public int getNecesidadVital() {
-		return necesidadVital;
 	}
 }
