@@ -1,8 +1,10 @@
 package modelo.poblacion;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 import control.Estado;
+import control.Poblacion;
 
 public class Seres {
 	private String nombre;
@@ -25,6 +27,7 @@ public class Seres {
 		this.esperanzaVida = generarEsperanzaVida();
 		this.tipoEstado = EstadoSer.menor;
 	}
+
 	public Seres(int edad, EstadoSer tipoEstado) {
 		super();
 		this.nombre = generarNombreAleatorio(nombres);
@@ -72,18 +75,47 @@ public class Seres {
 		ahorro = 0;
 		return (int) ahorro;
 	}
-	
-	public float calcularParteProporcional(Seres ser) {
-		Estado estado = new Estado(0, 0, 0);
-		float resultado = 0;
-		if (estado.pagarTrabajador()< ser.tipoEstado.getNivelVida()) {
-		resultado = ser.tipoEstado.getNivelVida()/estado.pagarTrabajador();
+
+	public float calcularParteProporcional(ArrayList<Seres> poblacion, Estado estado, Poblacion poblacioon,
+			EstadoSer estadoSer) {
+		for (int i = 0; i < poblacion.size(); i++) {
+			float nv = obtenerNivelVida(poblacion, i);
+			float ahorro = poblacion.get(i).getAhorro();
+			float resultado = 0;
+			float reduccion = 0.5f;
+			if (poblacion.get(i).getAhorro() < nv) {
+				if (ahorro == 0) {
+					cambiarVida(poblacion, i, reduccion);
+				} else {
+					float diferencia = poblacion.get(i).getAhorro() - nv;
+					float porcentaje = diferencia / nv;
+					reduccion = resultado * reduccion;
+					cambiarVida(poblacion, i, reduccion);
+				}
+				resultado = tipoEstado.getNivelVida() / ahorro;
+			}
 		}
-		return resultado;
+		return ahorro;
+	}
+
+	private void cambiarVida(ArrayList<Seres> poblacion, int i, float reduccion) {
+		float esperanzaNueva = poblacion.get(i).getEsperanzaVida() - reduccion;
+		poblacion.get(i).setEsperanzaVida(esperanzaNueva);
 	}
 	
-	public float reducirEsperanzaVida(Seres ser) {
-		return ser.tipoEstado.getNivelVida()-ser.calcularParteProporcional(ser); 
+	private float obtenerNivelVida(ArrayList<Seres> poblacion, int i) {
+		return poblacion.get(i).tipoEstado.getNivelVida();
+	}
+	public void setEsperanzaVida(float esperanzaVida) {
+		this.esperanzaVida = esperanzaVida;
+	}
+
+	public void setNombres(LinkedList<String> nombres) {
+		this.nombres = nombres;
+	}
+
+	public void setPersonas(String[] personas) {
+		this.personas = personas;
 	}
 
 	public LinkedList<String> getNombres() {

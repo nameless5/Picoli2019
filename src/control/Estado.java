@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.Stack;
 
 import modelo.empresa.Factorias;
+import modelo.poblacion.EstadoSer;
 import modelo.poblacion.Seres;
 
 public class Estado {
@@ -47,7 +48,6 @@ public class Estado {
 		}
 	}
 	
-
 	public void setDineroActual(int dineroActual) {
 		this.dineroActual = dineroActual;
 	}
@@ -96,5 +96,4 @@ public class Estado {
 			}
 		}
 	}
-	
 }
