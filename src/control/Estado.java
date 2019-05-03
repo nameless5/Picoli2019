@@ -60,7 +60,7 @@ public class Estado {
 
 	public void comprobarPorcentajeTrabajadores() {
 		// TODO
-	}
+	}//hola
 
 	public float getDemanda() {
 		return demanda;

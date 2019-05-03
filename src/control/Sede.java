@@ -41,7 +41,7 @@ public class Sede {
 	}
 
 	public ArrayList<Factorias> jubilar(ArrayList<Factorias> sedes) {
-	
+	//hola
 		return sedes;
 	}
 

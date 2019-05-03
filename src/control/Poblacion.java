@@ -97,7 +97,7 @@ public class Poblacion {
 			ser.setEdad(ser.getEdad() + 1);
 
 		}
-	}
+	}//hola
 
 	public ArrayList<Integer> jubilarTrabajador() {
 		this.recienJubilados.clear();
