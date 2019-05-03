@@ -2,6 +2,8 @@ package control;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Stack;
 
 import modelo.poblacion.EstadoSer;
 import modelo.poblacion.Seres;
@@ -13,12 +15,14 @@ public class Poblacion {
 	private ArrayList<Seres> jubilados;
 	private ArrayList<Seres> poblacion;
 	private ArrayDeque<Seres> demandantes;
+	private ArrayList<Integer> recienJubilados;
 
 	public Poblacion(int menoresInicial, int trabajadoresIncial, int jubiladosInicial) {
 		menores = new ArrayList<>();
 		jubilados = new ArrayList<>();
 		poblacion = new ArrayList<>();
 		demandantes = new ArrayDeque<>();
+		recienJubilados = new ArrayList<>();
 
 		for (int i = 0; i < menoresInicial; i++) {
 			poblacion.add(new Seres(Utilies.obtenerAleatorio(0, 17), EstadoSer.menor));
@@ -33,21 +37,21 @@ public class Poblacion {
 
 	public Seres generadorCiudadanos(Seres seres, ArrayList<Seres> menores) {
 		Seres ciudadano = new Seres();
-		añadirMenorCreadoAlaLista(ciudadano, menores);
+		aÃ±adirMenorCreadoAlaLista(ciudadano, menores);
 
-		/* Revisión, también hay que añadirlo a la lista principal */
+		/* RevisiÃ³n, tambiÃ©n hay que aÃ±adirlo a la lista principal */
 
-		añadirCiudadanoCreadoAlaLista(ciudadano, poblacion);
-		/* Revisión: Se añaden a las dos listas del tirón */
+		aÃ±adirCiudadanoCreadoAlaLista(ciudadano, poblacion);
+		/* RevisiÃ³n: Se aÃ±aden a las dos listas del tirÃ³n */
 
 		return ciudadano;
 	}
 
-	private void añadirMenorCreadoAlaLista(Seres ciudadano, ArrayList<Seres> menores) {
+	private void aÃ±adirMenorCreadoAlaLista(Seres ciudadano, ArrayList<Seres> menores) {
 		menores.add(ciudadano);
 	}
 
-	private void añadirCiudadanoCreadoAlaLista(Seres ciudadano, ArrayList<Seres> poblacion) {
+	private void aÃ±adirCiudadanoCreadoAlaLista(Seres ciudadano, ArrayList<Seres> poblacion) {
 		poblacion.add(ciudadano);
 	}
 
@@ -104,5 +108,26 @@ public class Poblacion {
 			ser.setEdad(ser.getEdad() + 1);
 
 		}
+	}//hola
+
+	public ArrayList<Integer> jubilarTrabajador() {
+		this.recienJubilados.clear();
+		for (int i = 0; i < poblacion.size(); i++) {
+			Seres persona = poblacion.get(i);
+			if (persona.getEdad() >= 65 && (persona.getTipoEstado() == EstadoSer.trabajador
+					|| persona.getTipoEstado() == EstadoSer.desempleado)) {
+				recienJubilados.add(persona.getId());
+				persona.setTipoEstado(EstadoSer.jubilado);
+			}
+		}
+		for (Iterator iterator = demandantes.iterator(); iterator.hasNext();) {
+			Seres ser = (Seres) iterator.next();
+			if (recienJubilados.contains(ser.getId())) {
+				iterator.remove();
+			}
+		}
+
+		return recienJubilados;
+
 	}
 }

@@ -12,7 +12,7 @@ public class Factorias {
 		super();
 		this.pilaTrabajador = new Stack<Seres>();
 	}
-
+//hola
 	public int  comprobarProduccion() {
 		 int produccion = pilaTrabajador.size() * this.produccionEmpleado;
 		return produccion;
