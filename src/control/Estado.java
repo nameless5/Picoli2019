@@ -10,11 +10,11 @@ import modelo.empresa.Factorias;
 import modelo.poblacion.Seres;
 
 public class Estado {
-	
+
 	Factorias factoria;
 	Poblacion poblacion;
 	Sede sede;
-	
+
 	private double demanda;
 	private int numeroSeres;
 	private double dineroActual;
@@ -33,22 +33,21 @@ public class Estado {
 		}
 		return resultado;
 	}
-	
+
 	public void eliminarFallecidos(ArrayList<Seres> poblacion, ArrayList<Seres> jubilados) {
 		for (int i = 0; i < poblacion.size(); i++) {
 			Seres persona = poblacion.get(i);
-			if(isFallecido(persona)) {
+			if (isFallecido(persona)) {
 				poblacion.remove(persona);
-				if(jubilados.contains(persona)) {
+				if (jubilados.contains(persona)) {
 					float ahorro = persona.getAhorro();
 					jubilados.remove(persona);
-					setDineroActual((int) (this.dineroActual+ahorro));
-					
+					setDineroActual((int) (this.dineroActual + ahorro));
+
 				}
 			}
 		}
 	}
-	
 
 	public void setDineroActual(int dineroActual) {
 		this.dineroActual = dineroActual;
@@ -60,7 +59,7 @@ public class Estado {
 
 	public void comprobarPorcentajeTrabajadores() {
 		// TODO
-	}//hola
+	}
 
 	public double getDemanda() {
 		return demanda;
@@ -73,16 +72,11 @@ public class Estado {
 	public double getDineroActual() {
 		return dineroActual;
 	}
-	
-	public void contratarTrabajador(ArrayDeque<Seres> demandantes, Stack<Seres> pilaTrabajador) {
-		//if(getDemanda()>factoria.getProduccion()) { /*Hay que obtener el numero concreto de gente a emplear*/
-			Seres contratado = demandantes.poll();
-			pilaTrabajador.push(contratado);
-		//}
-		
-	}
-	
-	
 
-	
+	public void contratarTrabajador(ArrayDeque<Seres> demandantes, Stack<Seres> pilaTrabajador) {
+		// if(getDemanda()>factoria.getProduccion()) { /*Hay que obtener el numero
+		// concreto de gente a emplear*/
+		Seres contratado = demandantes.poll();
+		pilaTrabajador.push(contratado);
+	}
 }
