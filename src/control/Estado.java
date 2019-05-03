@@ -17,7 +17,7 @@ public class Estado {
 	
 	private float demanda;
 	private int numeroSeres;
-	private int dineroActual;
+	private float dineroActual;
 
 	public Estado(float demanda, int numeroSeres, int dineroActual) {
 		super();
@@ -70,7 +70,7 @@ public class Estado {
 		return numeroSeres;
 	}
 
-	public int getDineroActual() {
+	public float getDineroActual() {
 		return dineroActual;
 	}
 	
