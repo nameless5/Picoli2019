@@ -1,5 +1,6 @@
 package control;
 
+import java.lang.reflect.Array;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -12,6 +13,7 @@ public class Estado {
 	
 	Factorias factoria;
 	Poblacion poblacion;
+	Sede sede;
 	
 	private double demanda;
 	private int numeroSeres;
@@ -58,7 +60,7 @@ public class Estado {
 
 	public void comprobarPorcentajeTrabajadores() {
 		// TODO
-	}
+	}//hola
 
 	public double getDemanda() {
 		return demanda;
@@ -80,22 +82,7 @@ public class Estado {
 		
 	}
 	
-	public void jubilarTrabajador(Stack<Seres> pilaTrabajador, ArrayDeque<Seres> demandantes) {
-		for (int i = 0; i < pilaTrabajador.size(); i++) {
-			int edad = pilaTrabajador.get(i).getEdad();
-			if(edad>=65) {
-				pilaTrabajador.remove(i);
-			}
-		}
-		
-		for (Iterator iterator = demandantes.iterator(); iterator.hasNext();) {
-			Seres seres = (Seres) iterator.next();
-			int edad = seres.getEdad();
-			if(edad>=65) {
-				demandantes.remove(seres);
-			}
-			
-		}
-	}
+	
+
 	
 }

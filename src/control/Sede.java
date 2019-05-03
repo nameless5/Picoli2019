@@ -15,7 +15,7 @@ public class Sede {
 	public void crearFactoria() {
 		this.factorias.add(new Factorias());
 	}
-	
+
 	public int produccionTotal() {
 		int produccion = 0;
 		for (Factorias factoria : factorias) {
@@ -38,6 +38,11 @@ public class Sede {
 
 	public void setFactorias(ArrayList<Factorias> factorias) {
 		this.factorias = factorias;
+	}
+
+	public ArrayList<Factorias> jubilar(ArrayList<Factorias> sedes) {
+	//hola
+		return sedes;
 	}
 
 }
