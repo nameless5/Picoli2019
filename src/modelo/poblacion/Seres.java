@@ -71,14 +71,14 @@ public class Seres {
 	public float calcularParteProporcional(Seres ser) {
 		Estado estado = new Estado(0, 0, 0);
 		float resultado = 0;
-		if (estado.pagarTrabajador()< ser.tipoEstado.getNivelVida()) {
+		if (estado.pagarTrabajador()< ser.tipoEstado.getSueldo()) {
 		resultado = ser.tipoEstado.getNivelVida()/estado.pagarTrabajador();
 		}
 		return resultado;
 	}
 	
 	public float reducirEsperanzaVida(Seres ser) {
-		return ser.tipoEstado.getNivelVida()-ser.calcularParteProporcional(ser); 
+		return ser.getEsperanzaVida()-ser.calcularParteProporcional(ser); 
 	}
 
 	public LinkedList<String> getNombres() {
