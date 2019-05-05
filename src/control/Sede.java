@@ -9,7 +9,7 @@ import modelo.poblacion.Seres;
 public class Sede {
 	private ArrayList<Factorias> factorias;
 
-	public Sede(ArrayList<Factorias> factorias) {
+	public Sede() {
 		super();
 		this.factorias = new ArrayList<>();
 	}

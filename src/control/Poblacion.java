@@ -36,23 +36,29 @@ public class Poblacion {
 		}
 	}
 
-	public Seres generadorCiudadanos(Seres seres, ArrayList<Seres> menores) {
-		Seres ciudadano = new Seres();
-		aniadirMenorCreadoAlaLista(ciudadano, menores);
+	public void cambiarTipoHabitante() {
+		for (int i = 0; i < poblacion.size(); i++) {
+			if (poblacion.get(i).getEdad() < 18) {
+				poblacion.get(i).setTipoEstado(EstadoSer.menor);
+			}
+		}
+	}
 
+	public void generadorCiudadanos(int numeroCiudadanos) {
+		for (int i = 0; i < numeroCiudadanos; i++) {
+			Seres ciudadano = new Seres();
+			aniadirMenorCreadoAlaLista(ciudadano, menores);
+			aniadirCiudadanoCreadoAlaLista(ciudadano);
+		}
 		/* Revisión, también hay que añadirlo a la lista principal */
-
-		aniadirCiudadanoCreadoAlaLista(ciudadano, poblacion);
 		/* Revisión: Se añaden a las dos listas del tirón */
-
-		return ciudadano;
 	}
 
 	private void aniadirMenorCreadoAlaLista(Seres ciudadano, ArrayList<Seres> menores) {
 		menores.add(ciudadano);
 	}
 
-	private void aniadirCiudadanoCreadoAlaLista(Seres ciudadano, ArrayList<Seres> poblacion) {
+	private void aniadirCiudadanoCreadoAlaLista(Seres ciudadano) {
 		poblacion.add(ciudadano);
 	}
 
@@ -62,6 +68,18 @@ public class Poblacion {
 
 		}
 	}
+	
+
+	public boolean isFallecido() {
+		boolean resultado = false;
+		for (int i = 0; i < poblacion.size(); i++) {
+			if (poblacion.get(i).getEdad() >= poblacion.get(i).getEsperanzaVida()) {
+				resultado = true;
+			}
+		}
+		return resultado;
+	}
+
 	public ArrayList<Integer> jubilarTrabajador() {
 		this.recienJubilados.clear();
 		for (int i = 0; i < poblacion.size(); i++) {
@@ -80,6 +98,17 @@ public class Poblacion {
 		}
 
 		return recienJubilados;
+
+	}
+
+	public float pagarTrabajador() {
+		return 1;
+	}
+
+	public void pagarNV(ArrayList<Seres> poblacion, EstadoSer estadoSer, Estado estado) {
+		pagarNVMenores(poblacion, estadoSer, estado);
+		pagarDemandantes(poblacion, estadoSer, estado);
+		pagarJubilados(poblacion, estadoSer, estado);
 
 	}
 
