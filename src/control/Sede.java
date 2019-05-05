@@ -18,6 +18,15 @@ public class Sede {
 		this.factorias.add(new Factorias());
 	}
 
+	public void eliminarEmpresasEmpty() {
+		for (Iterator iterator = factorias.iterator(); iterator.hasNext();) {
+			Factorias factoria = (Factorias) iterator.next();
+			if (factoria.getPilaTrabajador().isEmpty()) {
+				iterator.remove();
+			}
+		}
+	}
+
 	public int produccionTotal() {
 		int produccion = 0;
 		for (Factorias factoria : factorias) {
@@ -25,6 +34,7 @@ public class Sede {
 		}
 		return produccion;
 	}
+
 	public ArrayList<Factorias> eliminarJubilados(ArrayList<Integer> listaJubilados) {
 		for (Iterator iterator = factorias.iterator(); iterator.hasNext();) {
 			Factorias factoria = (Factorias) iterator.next();
