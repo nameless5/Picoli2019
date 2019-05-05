@@ -27,29 +27,15 @@ public class Estado {
 		this.dineroActual = dineroActual;
 	}
 
-	public boolean isFallecido(Seres seres) {
-		boolean resultado = false;
-		if (seres.getEdad() >= seres.getEsperanzaVida()) {
-			resultado = true;
+	public int obtenerAhorros(ArrayList<Seres> fallecidos, int dineroActual) {
+		fallecidos.clear();
+		for (int i = 0; i < fallecidos.size(); i++) {
+			float ahorro = fallecidos.get(i).getAhorro();
+			dineroActual = (int) (dineroActual + ahorro);
 		}
-		return resultado;
+		return dineroActual;	
 	}
-
-	public void eliminarFallecidos(ArrayList<Seres> poblacion, ArrayList<Seres> jubilados) {
-		for (int i = 0; i < poblacion.size(); i++) {
-			Seres persona = poblacion.get(i);
-			if (isFallecido(persona)) {
-				poblacion.remove(persona);
-				if (jubilados.contains(persona)) {
-					float ahorro = persona.getAhorro();
-					jubilados.remove(persona);
-					setDineroActual((int) (this.dineroActual + ahorro));
-
-				}
-			}
-		}
-	}
-
+	
 	public void setDineroActual(int dineroActual) {
 		this.dineroActual = dineroActual;
 	}

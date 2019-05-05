@@ -16,6 +16,7 @@ public class Poblacion {
 	private ArrayList<Seres> poblacion;
 	private ArrayDeque<Seres> demandantes;
 	private ArrayList<Integer> recienJubilados;
+	private ArrayList<Seres> fallecidos;
 
 	public Poblacion() {
 		int menoresInicial = 30, trabajadoresIncial = 100, jubiladosInicial = 20;
@@ -24,6 +25,7 @@ public class Poblacion {
 		poblacion = new ArrayList<>();
 		demandantes = new ArrayDeque<>();
 		recienJubilados = new ArrayList<>();
+		fallecidos = new ArrayList<>();
 
 		for (int i = 0; i < menoresInicial; i++) {
 			poblacion.add(new Seres(Utilies.obtenerAleatorio(0, 17), EstadoSer.menor));
@@ -62,6 +64,7 @@ public class Poblacion {
 
 		}
 	}
+
 	public ArrayList<Integer> jubilarTrabajador() {
 		this.recienJubilados.clear();
 		for (int i = 0; i < poblacion.size(); i++) {
@@ -196,5 +199,67 @@ public class Poblacion {
 			}
 		}
 		return morosos;
+	}
+	
+	public boolean isFallecido() {
+        boolean resultado = false;
+        for (int i = 0; i < poblacion.size(); i++) {
+            if (poblacion.get(i).getEdad() >= poblacion.get(i).getEsperanzaVida()) {
+                resultado = true;
+            }
+
+        }
+        return resultado;
+    }
+
+	public ArrayList<Seres> eliminarFallecidos() {
+		for (int i = 0; i < poblacion.size(); i++) {
+			Seres persona = poblacion.get(i);
+			if (isFallecido()) {
+				fallecidos.add(persona);
+				poblacion.remove(persona);
+				if(jubilados.contains(persona)) {
+				   jubilados.remove(persona);
+				}
+			}
+		}
+		return fallecidos;
+	}
+
+	public void actualizarPoblacion() {
+		int edad, respuesta;
+		for (int i = 0; i < poblacion.size(); i++) {
+			edad = poblacion.get(i).getEdad();
+		    respuesta = getRespuesta(edad);
+		switch (respuesta) {
+		case 0:
+			poblacion.get(i).setTipoEstado(EstadoSer.menor);
+			break;
+		case 1:
+			poblacion.get(i).setTipoEstado(EstadoSer.desempleado);
+			break;
+		case 2: 
+			poblacion.get(i).setTipoEstado(EstadoSer.jubilado);
+		default:
+			break;
+		}
+		
+	}
+		jubilarTrabajador();
+		eliminarFallecidos();
+	}
+	
+	private int getRespuesta(int edad) {
+		int valor;
+		if(edad>17 && edad<65) {
+				valor = 1;
+			}else {
+				if(edad<17) {
+					valor = 0;
+				}else {
+					valor = 2;
+				}
+			}
+		return valor;
 	}
 }
