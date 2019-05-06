@@ -36,7 +36,7 @@ public class Estado {
 		return dineroActual;	
 	}
 	
-	public void setDineroActual(int dineroActual) {
+	public void setDineroActual(double dineroActual) {
 		this.dineroActual = dineroActual;
 	}
 
