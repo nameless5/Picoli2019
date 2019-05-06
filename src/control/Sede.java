@@ -75,7 +75,6 @@ public class Sede {
 		for (Factorias factoria : factorias) {
 			contador = contador + factoria.getPilaTrabajador().size();
 		}
-
 	}
 
 	public ArrayList<Factorias> getFactorias() {
