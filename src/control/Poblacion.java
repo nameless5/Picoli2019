@@ -47,18 +47,19 @@ public class Poblacion {
 	public void generadorCiudadanos(int numeroCiudadanos) {
 		for (int i = 0; i < numeroCiudadanos; i++) {
 			Seres ciudadano = new Seres();
-			aniadirMenorCreadoAlaLista(ciudadano, menores);
+			aniadirMenorCreadoAlaLista(ciudadano);
 			aniadirCiudadanoCreadoAlaLista(ciudadano);
 		}
 		/* Revisión, también hay que añadirlo a la lista principal */
 		/* Revisión: Se añaden a las dos listas del tirón */
 	}
 
-	private void aniadirMenorCreadoAlaLista(Seres ciudadano, ArrayList<Seres> menores) {
+	private void aniadirMenorCreadoAlaLista(Seres ciudadano) {
 		menores.add(ciudadano);
 	}
 
 	private void aniadirCiudadanoCreadoAlaLista(Seres ciudadano) {
+		
 		poblacion.add(ciudadano);
 	}
 
