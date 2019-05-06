@@ -34,7 +34,7 @@ public class Factorias {
 		for (int i = 0; i < pilaTrabajador.size(); i++) {
 			float suma=pilaTrabajador.get(i).getAhorro() + cobroLimpioCadaTrabajador;
 			pilaTrabajador.get(i).setAhorro(suma);
-			dinero.setDineroTotal(dinero.getDineroTotal() - cobroLimpioCadaTrabajador);
+			dinero.setDineroTotal(dinero.getDineroTotal() - nv - cobroLimpioCadaTrabajador);
 		}
 	}
 
