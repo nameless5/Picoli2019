@@ -1,5 +1,8 @@
 package control;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import modelo.vista.Datos;
 import modelo.vista.DatosEstadoGlobal;
 import modelo.vista.DatosEstadoLocal;
@@ -8,14 +11,33 @@ import vista.Comunicador;
 import vista.UI;
 
 public class ParaUI extends UI {
-	private Estado estado;
+
+	private Estado estado = new Estado();
 
 	public ParaUI() {
 		super();
-		this.estado =  new Estado();
-		
 	}
 
+	public void listener() {
+
+		getBtnPasarPeriodo().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+
+		getBtnIncrementoDemanda().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+
+		getBtnDecrementoDemanda().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+}
+  
 	public void setDatosEnElInterfazUsuario(DatosPoblacion datosPoblacion, DatosEstadoLocal datosEstadoLocal,
 			DatosEstadoGlobal datosEstadoGlobal) {
 		rellenarComunicador(comunicadorPoblacion, datosPoblacion);

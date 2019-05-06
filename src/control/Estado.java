@@ -20,36 +20,22 @@ public class Estado {
 	private int numeroSeres;
 	private double dineroActual;
 
-	public Estado(double demanda, int numeroSeres, double dineroActual) {
+	public Estado() {
 		super();
+		//revisar esto
 		this.demanda = demanda;
-		this.numeroSeres = numeroSeres;
 		this.dineroActual = dineroActual;
 	}
 
-	public boolean isFallecido(Seres seres) {
-		boolean resultado = false;
-		if (seres.getEdad() >= seres.getEsperanzaVida()) {
-			resultado = true;
+	public int obtenerAhorros(ArrayList<Seres> fallecidos, int dineroActual) {
+		fallecidos.clear();
+		for (int i = 0; i < fallecidos.size(); i++) {
+			float ahorro = fallecidos.get(i).getAhorro();
+			dineroActual = (int) (dineroActual + ahorro);
 		}
-		return resultado;
+		return dineroActual;	
 	}
-
-	public void eliminarFallecidos(ArrayList<Seres> poblacion, ArrayList<Seres> jubilados) {
-		for (int i = 0; i < poblacion.size(); i++) {
-			Seres persona = poblacion.get(i);
-			if (isFallecido(persona)) {
-				poblacion.remove(persona);
-				if (jubilados.contains(persona)) {
-					float ahorro = persona.getAhorro();
-					jubilados.remove(persona);
-					setDineroActual((int) (this.dineroActual + ahorro));
-
-				}
-			}
-		}
-	}
-
+	
 	public void setDineroActual(int dineroActual) {
 		this.dineroActual = dineroActual;
 	}
@@ -76,7 +62,7 @@ public class Estado {
 
 	public void contratarTrabajador(ArrayDeque<Seres> demandantes, Stack<Seres> pilaTrabajador) {
 		// if(getDemanda()>factoria.getProduccion()) { /*Hay que obtener el numero
-		// concreto de gente a emplear*/
+		// concreto de gente a emple*(
 		Seres contratado = demandantes.poll();
 		pilaTrabajador.push(contratado);
 	}
