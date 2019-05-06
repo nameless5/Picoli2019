@@ -44,6 +44,7 @@ public class Sede {
 		pilaTrabajador.push(contratado);
     
 	}
+	
 	public void pagarTrabajador(Stack<Seres> pilaTrabajador,Estado estado) {
 		float pagar=730f;
 		float impuesto=182.5f;
