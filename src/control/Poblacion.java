@@ -58,14 +58,17 @@ public class Poblacion {
 		return dinero.getDineroTotal();
 	}
 
-	public void generadorCiudadanos(int numeroCiudadanos) {
+	public int generadorCiudadanos(int numeroCiudadanos) {
+		int nacimiento = 0;
 		for (int i = 0; i < numeroCiudadanos; i++) {
 			Seres ciudadano = new Seres();
 			aniadirMenorCreadoAlaLista(ciudadano);
 			aniadirCiudadanoCreadoAlaLista(ciudadano);
+			nacimiento++;
 		}
 		/* Revisión, también hay que añadirlo a la lista principal */
 		/* Revisión: Se añaden a las dos listas del tirón */
+		return nacimiento;
 	}
 
 	private void aniadirMenorCreadoAlaLista(Seres ciudadano) {
@@ -111,6 +114,7 @@ public class Poblacion {
 			if (persona.getEdad() >= 65 && (persona.getTipoEstado() == EstadoSer.trabajador
 					|| persona.getTipoEstado() == EstadoSer.desempleado)) {
 				recienJubilados.add(persona.getId());
+				generadorCiudadanos(1);
 				persona.setTipoEstado(EstadoSer.jubilado);
 			}
 		}
