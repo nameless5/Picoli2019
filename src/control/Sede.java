@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Stack;
 
+import modelo.empresa.DineroEstado;
 import modelo.empresa.Factorias;
 import modelo.poblacion.Seres;
 
@@ -45,17 +46,6 @@ public class Sede {
     
 	}
 	
-	public void pagarTrabajador(Stack<Seres> pilaTrabajador,Estado estado) {
-		float pagar=730f;
-		float impuesto=182.5f;
-		float cobroLimpioCadaTrabajador=pagar-impuesto;
-		for (int i = 0; i < pilaTrabajador.size(); i++) {
-			float suma=pilaTrabajador.get(i).getAhorro() + cobroLimpioCadaTrabajador;
-			pilaTrabajador.get(i).setAhorro(suma);
-			double dineroEstado = estado.getDineroActual()-cobroLimpioCadaTrabajador+impuesto;
-			estado.setDineroActual(estado.getDineroActual()+dineroEstado);
-		}
-	}
 	
 	public ArrayList<Factorias> eliminarJubilados(ArrayList<Integer> listaJubilados) {
 		for (Iterator iterator = factorias.iterator(); iterator.hasNext();) {
