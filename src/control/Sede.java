@@ -35,6 +35,16 @@ public class Sede {
 		pilaTrabajador.push(contratado);
 	}
 
+	public void pagarTrabajador(Stack<Seres> pilaTrabajador) {
+		float pagar=730f;
+		float impuesto=182.5f;
+		float cobroLimpioCadaTrabajador=pagar-impuesto;
+		for (int i = 0; i < pilaTrabajador.size(); i++) {
+			float suma=pilaTrabajador.get(i).getAhorro() + cobroLimpioCadaTrabajador;
+			pilaTrabajador.get(i).setAhorro(suma);
+		}
+	}
+	
 	public ArrayList<Factorias> eliminarJubilados(ArrayList<Integer> listaJubilados) {
 		for (Iterator iterator = factorias.iterator(); iterator.hasNext();) {
 			Factorias factoria = (Factorias) iterator.next();

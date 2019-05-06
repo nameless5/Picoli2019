@@ -40,10 +40,6 @@ public class Estado {
 		this.dineroActual = dineroActual;
 	}
 
-	public float pagarTrabajador() {
-		return 1;
-	}
-
 	public void comprobarPorcentajeTrabajadores() {
 		// TODO
 	}
