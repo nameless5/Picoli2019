@@ -62,7 +62,7 @@ public class Estado {
 
 	public void contratarTrabajador(ArrayDeque<Seres> demandantes, Stack<Seres> pilaTrabajador) {
 		// if(getDemanda()>factoria.getProduccion()) { /*Hay que obtener el numero
-		// concreto de gente a emplear*/
+		// concreto de gente a emple*(
 		Seres contratado = demandantes.poll();
 		pilaTrabajador.push(contratado);
 	}
