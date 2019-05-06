@@ -76,35 +76,6 @@ public class Seres {
 		return (int) ahorro;
 	}
 
-	public void calcularParteProporcional(ArrayList<Seres> poblacion, Estado estado, Poblacion poblacioon,
-			EstadoSer estadoSer) {
-		for (int i = 0; i < poblacion.size(); i++) {
-			float nv = obtenerNivelVida(poblacion, i);
-			float ahorro = poblacion.get(i).getAhorro();
-			float resultado = 0;
-			float reduccion = 0.5f;
-			if (poblacion.get(i).getAhorro() < nv) {
-				if (ahorro == 0) {
-					cambiarVida(poblacion, i, reduccion);
-				} else {
-					float diferencia =  nv - poblacion.get(i).getAhorro() ;
-					float porcentaje = diferencia / nv;
-					reduccion = porcentaje * reduccion;
-					cambiarVida(poblacion, i, reduccion);
-				}
-			}
-		}
-	}
-
-	private void cambiarVida(ArrayList<Seres> poblacion, int i, float reduccion) {
-		float esperanzaNueva = poblacion.get(i).getEsperanzaVida() - reduccion;
-		poblacion.get(i).setEsperanzaVida(esperanzaNueva);
-	}
-
-	private float obtenerNivelVida(ArrayList<Seres> poblacion, int i) {
-		return poblacion.get(i).tipoEstado.getNivelVida();
-	}
-
 	public void setEsperanzaVida(float esperanzaVida) {
 		this.esperanzaVida = esperanzaVida;
 	}

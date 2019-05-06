@@ -1,5 +1,6 @@
 package control;
 
+import java.lang.ProcessBuilder.Redirect;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -219,6 +220,33 @@ public class Poblacion {
 				}
 			}
 		}
+	}
+	public void calcularParteProporcional() {
+		for (int i = 0; i < poblacion.size(); i++) {
+			float nv = obtenerNivelVida(i);
+			float ahorro = poblacion.get(i).getAhorro();
+			float reduccion = 0.5f;
+			if (poblacion.get(i).getAhorro() < nv) {
+				if (ahorro == 0) {
+					cambiarVida(i, reduccion);
+				} else {
+					float diferencia =  nv - poblacion.get(i).getAhorro() ;
+					float porcentaje = diferencia / nv;
+					reduccion = porcentaje * reduccion;
+					cambiarVida(i, reduccion);
+				}
+			}else {
+				poblacion.get(i).setAhorro(poblacion.get(i).getAhorro()-nv);
+			}
+		}
+	}
+	private void cambiarVida(int i, float reduccion) {
+		float esperanzaNueva = poblacion.get(i).getEsperanzaVida() - reduccion;
+		poblacion.get(i).setEsperanzaVida(esperanzaNueva);
+	}
+
+	private float obtenerNivelVida(int i) {
+		return poblacion.get(i).getTipoEstado().getNivelVida();
 	}
 
 	public float deberJubilados() {
