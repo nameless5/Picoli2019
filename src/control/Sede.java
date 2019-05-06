@@ -54,7 +54,6 @@ public class Sede {
 			double dineroEstado = estado.getDineroActual()-cobroLimpioCadaTrabajador+impuesto;
 			estado.setDineroActual(estado.getDineroActual()+dineroEstado);
 		}
-		
 	}
 	
 	public ArrayList<Factorias> eliminarJubilados(ArrayList<Integer> listaJubilados) {
