@@ -11,13 +11,22 @@ import modelo.poblacion.Seres;
 public class Sede {
 	private ArrayList<Factorias> factorias;
 
-	public Sede(ArrayList<Factorias> factorias) {
+	public Sede() {
 		super();
 		this.factorias = new ArrayList<>();
 	}
 
 	public void crearFactoria() {
 		this.factorias.add(new Factorias());
+	}
+
+	public void eliminarEmpresasEmpty() {
+		for (Iterator iterator = factorias.iterator(); iterator.hasNext();) {
+			Factorias factoria = (Factorias) iterator.next();
+			if (factoria.getPilaTrabajador().isEmpty()) {
+				iterator.remove();
+			}
+		}
 	}
 
 	public int produccionTotal() {
@@ -33,8 +42,9 @@ public class Sede {
 		// concreto de gente a emplear*/
 		Seres contratado = demandantes.poll();
 		pilaTrabajador.push(contratado);
+    
 	}
-
+  
 	public void pagarTrabajador(Stack<Seres> pilaTrabajador) {
 		float pagar=730f;
 		float impuesto=182.5f;
