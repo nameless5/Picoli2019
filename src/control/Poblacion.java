@@ -17,6 +17,7 @@ public class Poblacion {
 	private ArrayDeque<Seres> demandantes;
 	private ArrayList<Integer> recienJubilados;
 	private ArrayList<Seres> fallecidos;
+	private ArrayList<Seres> mayoresEdad;
 
 	public Poblacion() {
 		int menoresInicial = 30, trabajadoresIncial = 100, jubiladosInicial = 20;
@@ -26,6 +27,7 @@ public class Poblacion {
 		demandantes = new ArrayDeque<>();
 		recienJubilados = new ArrayList<>();
 		fallecidos = new ArrayList<>();
+		mayoresEdad = new ArrayList<>();
 
 		for (int i = 0; i < menoresInicial; i++) {
 			poblacion.add(new Seres(Utilies.obtenerAleatorio(0, 17), EstadoSer.menor));
@@ -62,6 +64,26 @@ public class Poblacion {
 		for (Seres ser : this.poblacion) {
 			ser.setEdad(ser.getEdad() + 1);
 
+		}
+	}
+
+	public ArrayList<Seres> mayoresDeEdad() {
+		mayoresEdad.clear();
+		for (int i = 0; i < menores.size(); i++) {
+			Seres persona = menores.get(i);
+			if (persona.getTipoEstado() == EstadoSer.desempleado) {
+				mayoresEdad.add(persona);
+				menores.remove(persona);
+			}
+
+		}
+
+		return mayoresEdad;
+	}
+	
+	public void annadirMayoresEdad() {
+		for (int i = 0; i < mayoresEdad.size(); i++) {
+			demandantes.add(mayoresEdad.get(i));
 		}
 	}
 
@@ -200,26 +222,27 @@ public class Poblacion {
 		}
 		return morosos;
 	}
-	
-	public boolean isFallecido() {
-        boolean resultado = false;
-        for (int i = 0; i < poblacion.size(); i++) {
-            if (poblacion.get(i).getEdad() >= poblacion.get(i).getEsperanzaVida()) {
-                resultado = true;
-            }
 
-        }
-        return resultado;
-    }
+	public boolean isFallecido() {
+		boolean resultado = false;
+		for (int i = 0; i < poblacion.size(); i++) {
+			if (poblacion.get(i).getEdad() >= poblacion.get(i).getEsperanzaVida()) {
+				resultado = true;
+			}
+
+		}
+		return resultado;
+	}
 
 	public ArrayList<Seres> eliminarFallecidos() {
+		fallecidos.clear();
 		for (int i = 0; i < poblacion.size(); i++) {
 			Seres persona = poblacion.get(i);
 			if (isFallecido()) {
 				fallecidos.add(persona);
 				poblacion.remove(persona);
-				if(jubilados.contains(persona)) {
-				   jubilados.remove(persona);
+				if (jubilados.contains(persona)) {
+					jubilados.remove(persona);
 				}
 			}
 		}
@@ -230,36 +253,38 @@ public class Poblacion {
 		int edad, respuesta;
 		for (int i = 0; i < poblacion.size(); i++) {
 			edad = poblacion.get(i).getEdad();
-		    respuesta = getRespuesta(edad);
-		switch (respuesta) {
-		case 0:
-			poblacion.get(i).setTipoEstado(EstadoSer.menor);
-			break;
-		case 1:
-			poblacion.get(i).setTipoEstado(EstadoSer.desempleado);
-			break;
-		case 2: 
-			poblacion.get(i).setTipoEstado(EstadoSer.jubilado);
-		default:
-			break;
+			respuesta = getRespuesta(edad);
+			switch (respuesta) {
+			case 0:
+				poblacion.get(i).setTipoEstado(EstadoSer.menor);
+				break;
+			case 1:
+				poblacion.get(i).setTipoEstado(EstadoSer.desempleado);
+				break;
+			case 2:
+				poblacion.get(i).setTipoEstado(EstadoSer.jubilado);
+			default:
+				break;
+			}
+
 		}
-		
-	}
 		jubilarTrabajador();
 		eliminarFallecidos();
+		mayoresDeEdad();
+		annadirMayoresEdad();
 	}
-	
+
 	private int getRespuesta(int edad) {
 		int valor;
-		if(edad>17 && edad<65) {
-				valor = 1;
-			}else {
-				if(edad<17) {
-					valor = 0;
-				}else {
-					valor = 2;
-				}
+		if (edad > 17 && edad < 65) {
+			valor = 1;
+		} else {
+			if (edad < 17) {
+				valor = 0;
+			} else {
+				valor = 2;
 			}
+		}
 		return valor;
 	}
 }
