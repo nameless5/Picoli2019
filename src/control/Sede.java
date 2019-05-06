@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Stack;
 
+import modelo.empresa.DineroEstado;
 import modelo.empresa.Factorias;
 import modelo.poblacion.Seres;
 
@@ -44,6 +45,8 @@ public class Sede {
 		pilaTrabajador.push(contratado);
     
 	}
+	
+	
 	public ArrayList<Factorias> eliminarJubilados(ArrayList<Integer> listaJubilados) {
 		for (Iterator iterator = factorias.iterator(); iterator.hasNext();) {
 			Factorias factoria = (Factorias) iterator.next();
@@ -55,14 +58,13 @@ public class Sede {
 			}
 		}
 		return factorias;
-	};
+	}
 
 	public void numTrabajadores() {
 		int contador = 0;
 		for (Factorias factoria : factorias) {
 			contador = contador + factoria.getPilaTrabajador().size();
 		}
-
 	}
 
 	public ArrayList<Factorias> getFactorias() {

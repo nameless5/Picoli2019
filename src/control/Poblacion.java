@@ -124,6 +124,7 @@ public class Poblacion {
 
 	}
 
+
 	public float pagarTrabajador() {
 		return 1;
 	}
@@ -132,8 +133,8 @@ public class Poblacion {
 		pagarNVMenores(dinero);
 		pagarDemandantes(dinero);
 		pagarJubilados(dinero);
-
 	}
+
 
 	public void pagarNVMenores(DineroEstado dinero) {
 		// Dinero que se le da a cada menor y se acumula en el ahorro

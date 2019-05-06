@@ -19,6 +19,7 @@ public class Factorias {
 		return produccion;
 	}
 	
+	
 	public int numeroTrabajadores() {
 		int empleados;
 		empleados = 1000 - this.pilaTrabajador.size();
@@ -26,10 +27,14 @@ public class Factorias {
 		
 	}
 	public void pagarTrabajador(DineroEstado dinero) {
-		float cobroLimpioCadaTrabajador = (float) (this.pilaTrabajador.get(0).getTipoEstado().getSueldo() - this.pilaTrabajador.get(0).getTipoEstado().getNivelVida()/2);
-		for (int i = 0; i < this.pilaTrabajador.size(); i++) {
-			float suma = this.pilaTrabajador.get(i).getAhorro() + cobroLimpioCadaTrabajador;
-			this.pilaTrabajador.get(i).setAhorro(suma);
+		float pagar= (float) (this.pilaTrabajador.get(0).getTipoEstado().getSueldo());
+		float impuesto=this.pilaTrabajador.get(0).getTipoEstado().getNivelVida()/2;
+		float nv = this.pilaTrabajador.get(0).getTipoEstado().getNivelVida();
+		float cobroLimpioCadaTrabajador = pagar - impuesto - nv;
+		for (int i = 0; i < pilaTrabajador.size(); i++) {
+			float suma=pilaTrabajador.get(i).getAhorro() + cobroLimpioCadaTrabajador;
+			pilaTrabajador.get(i).setAhorro(suma);
+			dinero.setDineroTotal(dinero.getDineroTotal() - cobroLimpioCadaTrabajador);
 		}
 	}
 

@@ -16,7 +16,6 @@ public class Estado {
 	Sede sede;
 
 	private double demanda;
-	private int numeroSeres;
 
 	public Estado() {
 		super();
@@ -24,26 +23,15 @@ public class Estado {
 		this.sede = new Sede();
 		this.dinero = new DineroEstado(100000);
 	}
+
 	public void pasarPeriodo() {
-		sede.produccionTotal();
 		
-	}
-
-	public float pagarTrabajador() {
-		return 1;
-	}
-
-	public void comprobarPorcentajeTrabajadores() {
-		// TODO
 	}
 
 	public double getDemanda() {
 		return demanda;
 	}
 
-	public int getNumeroSeres() {
-		return numeroSeres;
-	}
 
 	
 
