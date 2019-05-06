@@ -74,15 +74,6 @@ public class Poblacion {
 		}
 	}
 
-	public boolean isFallecido() {
-		boolean resultado = false;
-		for (int i = 0; i < poblacion.size(); i++) {
-			if (poblacion.get(i).getEdad() >= poblacion.get(i).getEsperanzaVida()) {
-				resultado = true;
-			}
-		}
-		return resultado;
-
 	public ArrayList<Seres> mayoresDeEdad() {
 		mayoresEdad.clear();
 		for (int i = 0; i < menores.size(); i++) {
