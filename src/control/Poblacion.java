@@ -221,7 +221,7 @@ public class Poblacion {
 			}
 		}
 	}
-	public void calcularParteProporcional() {
+	public void reducirVida() {
 		for (int i = 0; i < poblacion.size(); i++) {
 			float nv = obtenerNivelVida(i);
 			float ahorro = poblacion.get(i).getAhorro();
@@ -232,8 +232,8 @@ public class Poblacion {
 				} else {
 					float diferencia =  nv - poblacion.get(i).getAhorro() ;
 					float porcentaje = diferencia / nv;
-					reduccion = porcentaje * reduccion;
-					cambiarVida(i, reduccion);
+					float resto = porcentaje * reduccion;
+					cambiarVida(i, resto);
 				}
 			}else {
 				poblacion.get(i).setAhorro(poblacion.get(i).getAhorro()-nv);

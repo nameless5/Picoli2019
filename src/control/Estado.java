@@ -30,6 +30,7 @@ public class Estado {
 		poblacion.pagarNV(dinero);
 		poblacion.envejecer();
 		poblacion.cambiarTipoHabitante();
+		poblacion.reducirVida();
 		
 	}
 
