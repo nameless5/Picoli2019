@@ -48,12 +48,12 @@ public class Poblacion {
 			}
 		}
 	}
-	
+
 	public double obtenerAhorros(DineroEstado dinero) {
 		fallecidos.clear();
 		for (int i = 0; i < fallecidos.size(); i++) {
 			float ahorro = fallecidos.get(i).getAhorro();
-			dinero.setDineroTotal(dinero.getDineroTotal()+ahorro);
+			dinero.setDineroTotal(dinero.getDineroTotal() + ahorro);
 		}
 		return dinero.getDineroTotal();
 	}
@@ -125,7 +125,6 @@ public class Poblacion {
 
 	}
 
-
 	public float pagarTrabajador() {
 		return 1;
 	}
@@ -136,7 +135,6 @@ public class Poblacion {
 		pagarJubilados(dinero);
 	}
 
-
 	public void pagarNVMenores(DineroEstado dinero) {
 		// Dinero que se le da a cada menor y se acumula en el ahorro
 		float nv = menores.get(0).getTipoEstado().getNivelVida();
@@ -146,14 +144,14 @@ public class Poblacion {
 		dineroTotalPagar = contador * nv;
 		if (dinero.getDineroTotal() >= dineroTotalPagar) {
 			for (int i = 0; i < this.poblacion.size(); i++) {
-				if (this.poblacion.get(i).getTipoEstado()==poblacion.get(i).getTipoEstado().menor) {
+				if (this.poblacion.get(i).getTipoEstado() == poblacion.get(i).getTipoEstado().menor) {
 					this.poblacion.get(i).setAhorro(nv);
 				}
 			}
 		} else {
 			float reparto = (float) (dinero.getDineroTotal() / menores.size());
 			for (int i = 0; i < this.poblacion.size(); i++) {
-				if (poblacion.get(i).getTipoEstado()==poblacion.get(i).getTipoEstado().menor) {
+				if (poblacion.get(i).getTipoEstado() == poblacion.get(i).getTipoEstado().menor) {
 					this.poblacion.get(i).setAhorro(reparto);
 				}
 			}
@@ -178,14 +176,14 @@ public class Poblacion {
 		dineroTotalPagar = contador * nv / 2;
 		if (dinero.getDineroTotal() >= dineroTotalPagar) {
 			for (int i = 0; i < poblacion.size(); i++) {
-				if (poblacion.get(i).getTipoEstado()==poblacion.get(i).getTipoEstado().desempleado) {
+				if (poblacion.get(i).getTipoEstado() == poblacion.get(i).getTipoEstado().desempleado) {
 					poblacion.get(i).setAhorro(pedirAhorro(poblacion, i) + dineroTotalPagar);
 				}
 			}
 		} else {
 			float reparto = (float) (dinero.getDineroTotal() / contador);
 			for (int i = 0; i < poblacion.size(); i++) {
-				if (poblacion.get(i).getTipoEstado()==poblacion.get(i).getTipoEstado().desempleado) {
+				if (poblacion.get(i).getTipoEstado() == poblacion.get(i).getTipoEstado().desempleado) {
 					poblacion.get(i).setAhorro(pedirAhorro(poblacion, i) + reparto);
 				}
 			}
@@ -205,7 +203,7 @@ public class Poblacion {
 		dineroTotalPagar = deberJubilados();
 		if (dinero.getDineroTotal() >= dineroTotalPagar) {
 			for (int i = 0; i < poblacion.size(); i++) {
-				if (poblacion.get(i).getTipoEstado()==poblacion.get(i).getTipoEstado().jubilado) {
+				if (poblacion.get(i).getTipoEstado() == poblacion.get(i).getTipoEstado().jubilado) {
 					if (pedirAhorro(poblacion, i) < nv) {
 						float pagar = nv - pedirAhorro(poblacion, i);
 						poblacion.get(i).setAhorro(pedirAhorro(poblacion, i) + pagar);
@@ -215,12 +213,14 @@ public class Poblacion {
 		} else {
 			float reparto = (float) (dinero.getDineroTotal() / contarJubiladosMorosos());
 			for (int i = 0; i < poblacion.size(); i++) {
-				if (poblacion.get(i).getTipoEstado()==poblacion.get(i).getTipoEstado().jubilado && pedirAhorro(poblacion, i) < nv) {
+				if (poblacion.get(i).getTipoEstado() == poblacion.get(i).getTipoEstado().jubilado
+						&& pedirAhorro(poblacion, i) < nv) {
 					poblacion.get(i).setAhorro(pedirAhorro(poblacion, i) + reparto);
 				}
 			}
 		}
 	}
+
 	public void reducirVida() {
 		for (int i = 0; i < poblacion.size(); i++) {
 			float nv = obtenerNivelVida(i);
@@ -230,16 +230,17 @@ public class Poblacion {
 				if (ahorro == 0) {
 					cambiarVida(i, reduccion);
 				} else {
-					float diferencia =  nv - poblacion.get(i).getAhorro() ;
+					float diferencia = nv - poblacion.get(i).getAhorro();
 					float porcentaje = diferencia / nv;
 					float resto = porcentaje * reduccion;
 					cambiarVida(i, resto);
 				}
-			}else {
-				poblacion.get(i).setAhorro(poblacion.get(i).getAhorro()-nv);
+			} else {
+				poblacion.get(i).setAhorro(poblacion.get(i).getAhorro() - nv);
 			}
 		}
 	}
+
 	private void cambiarVida(int i, float reduccion) {
 		float esperanzaNueva = poblacion.get(i).getEsperanzaVida() - reduccion;
 		poblacion.get(i).setEsperanzaVida(esperanzaNueva);
@@ -255,7 +256,7 @@ public class Poblacion {
 		float acumulador = 0;
 		contador = contarTipoPersona(jubilados.get(0).getTipoEstado(), contador);
 		for (int i = 0; i < poblacion.size(); i++) {
-			if (poblacion.get(i).getTipoEstado()==poblacion.get(i).getTipoEstado().jubilado) {
+			if (poblacion.get(i).getTipoEstado() == poblacion.get(i).getTipoEstado().jubilado) {
 				if (pedirAhorro(poblacion, i) < nv) {
 					float diferencia = nv - pedirAhorro(poblacion, i);
 					acumulador += diferencia;
@@ -270,7 +271,7 @@ public class Poblacion {
 		float nv = jubilados.get(0).getTipoEstado().getNivelVida();
 		int morosos = 0;
 		for (int i = 0; i < poblacion.size(); i++) {
-			if (poblacion.get(i).getTipoEstado()==poblacion.get(i).getTipoEstado().jubilado) {
+			if (poblacion.get(i).getTipoEstado() == poblacion.get(i).getTipoEstado().jubilado) {
 				if (poblacion.get(i).getAhorro() < nv) {
 					morosos++;
 				}
@@ -343,4 +344,12 @@ public class Poblacion {
 		}
 		return valor;
 	}
+
+	public double demandaAnual() {
+		double NumMenores = this.menores.size() * 365;
+		double NumTrabajador = contarTipoPersona(EstadoSer.trabajador, 0);
+		double restantes = (this.demandantes.size() + this.jubilados.size()) * 182.5;
+		return restantes + NumMenores + NumTrabajador;
+	}
+
 }
