@@ -37,7 +37,7 @@ public class ParaUI extends UI {
 			}
 		});
 }
-
+  
 	public void setDatosEnElInterfazUsuario(DatosPoblacion datosPoblacion, DatosEstadoLocal datosEstadoLocal,
 			DatosEstadoGlobal datosEstadoGlobal) {
 		rellenarComunicador(comunicadorPoblacion, datosPoblacion);

@@ -40,23 +40,30 @@ public class Poblacion {
 		}
 	}
 
-	public Seres generadorCiudadanos(Seres seres, ArrayList<Seres> menores) {
-		Seres ciudadano = new Seres();
-		aniadirMenorCreadoAlaLista(ciudadano, menores);
-
-		/* Revisión, también hay que añadirlo a la lista principal */
-
-		aniadirCiudadanoCreadoAlaLista(ciudadano, poblacion);
-		/* Revisión: Se añaden a las dos listas del tirón */
-
-		return ciudadano;
+	public void cambiarTipoHabitante() {
+		for (int i = 0; i < poblacion.size(); i++) {
+			if (poblacion.get(i).getEdad() < 18) {
+				poblacion.get(i).setTipoEstado(EstadoSer.menor);
+			}
+		}
 	}
 
-	private void aniadirMenorCreadoAlaLista(Seres ciudadano, ArrayList<Seres> menores) {
+	public void generadorCiudadanos(int numeroCiudadanos) {
+		for (int i = 0; i < numeroCiudadanos; i++) {
+			Seres ciudadano = new Seres();
+			aniadirMenorCreadoAlaLista(ciudadano);
+			aniadirCiudadanoCreadoAlaLista(ciudadano);
+		}
+		/* Revisión, también hay que añadirlo a la lista principal */
+		/* Revisión: Se añaden a las dos listas del tirón */
+	}
+
+	private void aniadirMenorCreadoAlaLista(Seres ciudadano) {
 		menores.add(ciudadano);
 	}
 
-	private void aniadirCiudadanoCreadoAlaLista(Seres ciudadano, ArrayList<Seres> poblacion) {
+	private void aniadirCiudadanoCreadoAlaLista(Seres ciudadano) {
+		
 		poblacion.add(ciudadano);
 	}
 
@@ -105,6 +112,13 @@ public class Poblacion {
 		}
 
 		return recienJubilados;
+
+	}
+
+	public void pagarNV(ArrayList<Seres> poblacion, EstadoSer estadoSer, Estado estado) {
+		pagarNVMenores(poblacion, estadoSer, estado);
+		pagarDemandantes(poblacion, estadoSer, estado);
+		pagarJubilados(poblacion, estadoSer, estado);
 
 	}
 
