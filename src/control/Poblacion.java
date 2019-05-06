@@ -115,10 +115,6 @@ public class Poblacion {
 
 	}
 
-	public float pagarTrabajador() {
-		return 1;
-	}
-
 	public void pagarNV(ArrayList<Seres> poblacion, EstadoSer estadoSer, Estado estado) {
 		pagarNVMenores(poblacion, estadoSer, estado);
 		pagarDemandantes(poblacion, estadoSer, estado);
