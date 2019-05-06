@@ -25,6 +25,8 @@ public class Estado {
 	}
 
 	public void pasarPeriodo() {
+		sede.produccionTotal();
+		factoria.pagarTrabajador(dinero);
 		
 	}
 
