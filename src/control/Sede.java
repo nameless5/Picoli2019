@@ -65,7 +65,7 @@ public class Sede {
 			}
 		}
 		return factorias;
-	};
+	}
 
 	public void numTrabajadores() {
 		int contador = 0;
