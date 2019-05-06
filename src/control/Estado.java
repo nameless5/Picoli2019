@@ -20,10 +20,10 @@ public class Estado {
 	private int numeroSeres;
 	private double dineroActual;
 
-	public Estado(double demanda, int numeroSeres, double dineroActual) {
+	public Estado() {
 		super();
+		//revisar esto
 		this.demanda = demanda;
-		this.numeroSeres = numeroSeres;
 		this.dineroActual = dineroActual;
 	}
 
