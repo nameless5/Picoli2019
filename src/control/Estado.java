@@ -114,6 +114,29 @@ public class Estado {
 		}
 	}
 
+	/*POSIBLE PRUEBA DEL TEST
+	 * public static void main(String[] args) {
+		double produccion = 100000;
+		double demanda = 75250;
+		int trabajadores = 0;
+
+		double calcular = demanda - produccion;
+		float diferencia = (float) (calcular / 1000);
+		if (demanda != produccion) {
+			if (demanda > produccion) {
+				trabajadores = (int) Math.ceil(diferencia);
+				System.out.println(trabajadores);
+			} else {
+				trabajadores = (int) Math.ceil(diferencia);
+				System.out.println(trabajadores * 1000);
+			}
+		} else {
+			System.out.println(trabajadores);
+
+		}
+
+	}*/
+
 	public void calcularDemandantes(double trabajadores, ArrayDeque<Seres> demandantes, Stack<Seres> pilaTrabajador) {
 		if (demandantes.size() > trabajadores) {
 			for (int i = 0; i < trabajadores; i++) {
