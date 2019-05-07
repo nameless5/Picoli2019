@@ -56,25 +56,62 @@ public class Estado {
 		return contarTrabajadores * 1000;
 	}
 
-	public double aumentarProduccion(double produccionAuxiliar) {
-		float porcentaje = (float) (produccionAuxiliar * 0.1);
-		return produccionAuxiliar += porcentaje;
+	public double incrementarDemanda() {
+		float porcentaje = (float) (this.demanda * 0.1);
+		return demanda += porcentaje;
 	}
 
-	public double disminuirProduccion(double produccionAuxiliar) {
-		float porcentaje = (float) (produccionAuxiliar * 0.1);
-		return produccionAuxiliar -= porcentaje;
+	public double disminuirDemanda() {
+		float porcentaje = (float) (this.demanda * 0.1);
+		return demanda -= porcentaje;
 	}
 
-	public double calcularTrabajadores() {
-		if (produccionAuxiliar > produccion) {
-			double calcular = produccionAuxiliar - produccion;
-			double trabajadores = calcular / 1000;
+	public int calcularTrabajadores() {
+		double calcular = demanda - produccion;
+		float diferencia = (float) (calcular / 1000);
+		if (demanda != produccion) {
+			if (demanda > produccion) {
+				int trabajadores = (int) Math.ceil(diferencia);
+				return trabajadores;
+			} else {
+				int trabajadores = (int) Math.ceil(diferencia);
+				return trabajadores;
+			}
+		} else {
+			return 0;
+		}
 
-			return trabajadores;
-		} else
+	}
 
-			return demanda;
+	public void contratarTrabajador(ArrayDeque<Seres> demandantes, Stack<Seres> pilaTrabajador) {
+		// if(getDemanda()>factoria.getProduccion()) { /*Hay que obtener el numero
+		// concreto de gente a emple*(
+		Seres contratado = demandantes.poll();
+		pilaTrabajador.push(contratado);
+	}
+
+	public void contratarOdespedir(ArrayDeque<Seres> demandantes, Stack<Seres> pilaTrabajador) {
+		int trabajadores = calcularTrabajadores();
+		if (trabajadores > 0) {
+			if (demandantes.size() > trabajadores) {
+				for (int i = 0; i < trabajadores; i++) {
+					contratarTrabajador(demandantes, pilaTrabajador);
+				}
+			}else {
+				int nacimientos = trabajadores-demandantes.size();
+				for (int i = 0; i < demandantes.size(); i++) {
+					contratarTrabajador(demandantes, pilaTrabajador);
+				}
+					poblacion.generadorCiudadanos(nacimientos);
+			}
+
+		} else {
+			trabajadores = trabajadores * -1;
+			for (int i = 0; i < trabajadores; i++) {
+				sede.despedirTrabajadores(demandantes, factoria);
+			}
+
+		}
 	}
 
 	public void calcularDemandantes(double trabajadores, ArrayDeque<Seres> demandantes, Stack<Seres> pilaTrabajador) {
@@ -87,13 +124,6 @@ public class Estado {
 
 	}
 
-	public void contratarTrabajador(ArrayDeque<Seres> demandantes, Stack<Seres> pilaTrabajador) {
-		// if(getDemanda()>factoria.getProduccion()) { /*Hay que obtener el numero
-		// concreto de gente a emple*(
-		Seres contratado = demandantes.poll();
-		pilaTrabajador.push(contratado);
-	}
-
 	public void aumentarDemanda() {
 		this.demanda = this.demanda + 10000;
 	}
@@ -101,18 +131,18 @@ public class Estado {
 	public void decrementarDemanda() {
 		this.demanda = this.demanda - 10000;
 	}
-	
+
 	public DatosPoblacion getDatosPoblacion() {
-        return new DatosPoblacion(this.poblacion.numeroPoblacion(), this.poblacion.numeroMenores(),
-                this.sede.numTrabajadores(), this.poblacion.numeroJubilados(), 0,
-                this.poblacion.numeroFallecidos(), this.poblacion.jubilarTrabajador().size(), 0);
-    }
+		return new DatosPoblacion(this.poblacion.numeroPoblacion(), this.poblacion.numeroMenores(),
+				this.sede.numTrabajadores(), this.poblacion.numeroJubilados(), 0, this.poblacion.numeroFallecidos(),
+				this.poblacion.jubilarTrabajador().size(), 0);
+	}
 
-    public DatosEstadoGlobal getDatosEstadoGlobales() {
-        return new DatosEstadoGlobal(this.demanda, this.sede.produccionTotal(), this.dinero.getDineroTotal(), 0);
-    }
+	public DatosEstadoGlobal getDatosEstadoGlobales() {
+		return new DatosEstadoGlobal(this.demanda, this.sede.produccionTotal(), this.dinero.getDineroTotal(), 0);
+	}
 
-    public DatosEstadoLocal getDatosEstadoLocal() {
-        return new DatosEstadoLocal(0, 0, 0, 0, 0, 0);
-    }
+	public DatosEstadoLocal getDatosEstadoLocal() {
+		return new DatosEstadoLocal(0, 0, 0, 0, 0, 0);
+	}
 }

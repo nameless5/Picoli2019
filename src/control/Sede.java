@@ -98,11 +98,9 @@ public class Sede {
 
 	}
 
-	private void despedirTrabajadores(ArrayDeque<Seres> demandantes, Factorias empresa) {
-		for (int i = 0; i < empresa.getPilaTrabajador().size(); i++) {
+	public void despedirTrabajadores(ArrayDeque<Seres> demandantes, Factorias empresa) {
 			Seres trabajador = empresa.getPilaTrabajador().pop();
 			demandantes.offer(trabajador);
-		}
 	}
 
 	public ArrayList<Factorias> getFactorias() {
