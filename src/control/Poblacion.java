@@ -1,8 +1,12 @@
 package control;
 
+import java.lang.ProcessBuilder.Redirect;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Stack;
+
+
 import modelo.empresa.DineroEstado;
 import modelo.poblacion.EstadoSer;
 import modelo.poblacion.Seres;
@@ -46,6 +50,7 @@ public class Poblacion {
 		}
 	}
 
+
 	public double obtenerAhorros(DineroEstado dinero) {
 		fallecidos.clear();
 		for (int i = 0; i < fallecidos.size(); i++) {
@@ -54,7 +59,6 @@ public class Poblacion {
 		}
 		return dinero.getDineroTotal();
 	}
-
 	public int generadorCiudadanos(int numeroCiudadanos) {
 		int nacimiento = 0;
 		for (int i = 0; i < numeroCiudadanos; i++) {
@@ -63,8 +67,12 @@ public class Poblacion {
 			aniadirCiudadanoCreadoAlaLista(ciudadano);
 			nacimiento++;
 		}
-		/* Revisión, también hay que añadirlo a la lista principal */
-		/* Revisión: Se añaden a las dos listas del tirón */
+		/* Revisiï¿½n, tambiï¿½n hay que aï¿½adirlo a la lista principal */
+		/* Revisiï¿½n: Se aï¿½aden a las dos listas del tirï¿½n */
+=======
+		/* RevisiÃ³n, tambiÃ©n hay que aÃ±adirlo a la lista principal */
+		/* RevisiÃ³n: Se aÃ±aden a las dos listas del tirÃ³n */
+
 		return nacimiento;
 	}
 
@@ -138,6 +146,7 @@ public class Poblacion {
 
 	public void pagarNVMenores(DineroEstado dinero) {
 		// Dinero que se le da a cada menor y se acumula en el ahorro
+
 		float nv = 365;
 		float dineroTotalPagar = 0;
 		int contador = 0;
@@ -352,6 +361,7 @@ public class Poblacion {
 		double restantes = (this.demandantes.size() + this.jubilados.size()) * 182.5;
 		return restantes + NumMenores + NumTrabajador;
 	}
+
 
 	public int numeroMenores() {
 		int contador = 0;

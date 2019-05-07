@@ -6,7 +6,7 @@ public class DatosEstadoGlobal extends Datos {
 
 	 public DatosEstadoGlobal(double demanda,double produccion,double capitalEstatal,double crecimientoAnual) {
 		super();
-		ArrayList datos = getDatos();
+		ArrayList<Double> datos = getDatos();
 		datos.add(demanda);
 		datos.add(produccion);
 		datos.add(capitalEstatal);

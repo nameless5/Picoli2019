@@ -67,6 +67,12 @@ public class Seres {
 
 	}
 
+	public int generarAhorro() {
+		ahorro = 0;
+		return (int) ahorro;
+	}
+
+
 	public void setEsperanzaVida(float esperanzaVida) {
 		this.esperanzaVida = esperanzaVida;
 	}

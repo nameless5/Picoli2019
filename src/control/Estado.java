@@ -13,12 +13,14 @@ import modelo.vista.DatosPoblacion;
 
 public class Estado {
 
+
 	private Factorias factoria;
 	private Poblacion poblacion;
 	private DineroEstado dinero;
 	private Sede sede;
 
 	private double demanda = 99999;
+
 
 	public Estado() {
 		super();

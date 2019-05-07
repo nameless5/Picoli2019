@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Stack;
 
+import modelo.empresa.DineroEstado;
 import modelo.empresa.Factorias;
 import modelo.poblacion.Seres;
 
@@ -29,6 +30,15 @@ public class Sede {
 		}
 	}
 
+	public void eliminarEmpresasEmpty() {
+		for (Iterator iterator = factorias.iterator(); iterator.hasNext();) {
+			Factorias factoria = (Factorias) iterator.next();
+			if (factoria.getPilaTrabajador().isEmpty()) {
+				iterator.remove();
+			}
+		}
+	}
+
 	public int produccionTotal() {
 		int produccion = 0;
 		for (Factorias factoria : factorias) {
@@ -36,6 +46,7 @@ public class Sede {
 		}
 		return produccion;
 	}
+
 
 	public void contratarDesempleados(ArrayList<Seres> desempleados) {
 		for (Iterator iterator = desempleados.iterator(); iterator.hasNext();) {
@@ -65,7 +76,7 @@ public class Sede {
 		}
 		return libres;
 	}
-
+	
 	public ArrayList<Factorias> eliminarJubilados(ArrayList<Integer> listaJubilados) {
 		for (Iterator iterator = factorias.iterator(); iterator.hasNext();) {
 			Factorias factoria = (Factorias) iterator.next();
@@ -77,6 +88,14 @@ public class Sede {
 			}
 		}
 		return factorias;
+	}
+
+	private int numTrabajadores() {
+		int contador = 0;
+		for (Factorias factoria : factorias) {
+			contador = contador + factoria.getPilaTrabajador().size();
+		}
+		return contador;
 	}
 
 	public void gestionarCierreFactorias(ArrayDeque<Seres> demandantes) {
