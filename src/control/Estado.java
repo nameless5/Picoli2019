@@ -8,6 +8,9 @@ import modelo.empresa.DineroEstado;
 import modelo.empresa.Factorias;
 import modelo.poblacion.EstadoSer;
 import modelo.poblacion.Seres;
+import modelo.vista.DatosEstadoGlobal;
+import modelo.vista.DatosEstadoLocal;
+import modelo.vista.DatosPoblacion;
 
 public class Estado {
 
@@ -91,20 +94,25 @@ public class Estado {
 		pilaTrabajador.push(contratado);
 	}
 
-	public void jubilarTrabajador(Stack<Seres> pilaTrabajador, ArrayDeque<Seres> demandantes) {
-		for (int i = 0; i < pilaTrabajador.size(); i++) {
-			int edad = pilaTrabajador.get(i).getEdad();
-			if (edad >= 65) {
-				pilaTrabajador.remove(i);
-			}
-		}
-
-		for (Iterator iterator = demandantes.iterator(); iterator.hasNext();) {
-			Seres seres = (Seres) iterator.next();
-			int edad = seres.getEdad();
-			if (edad >= 65) {
-				demandantes.remove(seres);
-			}
-		}
+	public void aumentarDemanda() {
+		this.demanda = this.demanda + 10000;
 	}
+
+	public void decrementarDemanda() {
+		this.demanda = this.demanda - 10000;
+	}
+	
+	public DatosPoblacion getDatosPoblacion() {
+        return new DatosPoblacion(this.poblacion.numeroPoblacion(), this.poblacion.numeroMenores(),
+                this.sede.numTrabajadores(), this.poblacion.numeroJubilados(), 0,
+                this.poblacion.numeroFallecidos(), this.poblacion.jubilarTrabajador().size(), 0);
+    }
+
+    public DatosEstadoGlobal getDatosEstadoGlobales() {
+        return new DatosEstadoGlobal(this.demanda, this.sede.produccionTotal(), this.dinero.getDineroTotal(), 0);
+    }
+
+    public DatosEstadoLocal getDatosEstadoLocal() {
+        return new DatosEstadoLocal(0, 0, 0, 0, 0, 0);
+    }
 }
