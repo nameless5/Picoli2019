@@ -7,10 +7,12 @@ import java.util.Stack;
 
 import modelo.empresa.DineroEstado;
 import modelo.empresa.Factorias;
+import modelo.poblacion.EstadoSer;
 import modelo.poblacion.Seres;
 
 public class Sede {
 	private ArrayList<Factorias> factorias;
+
 
 	public Sede() {
 		super();
@@ -45,7 +47,6 @@ public class Sede {
 		pilaTrabajador.push(contratado);
     
 	}
-	
 	
 	public ArrayList<Factorias> eliminarJubilados(ArrayList<Integer> listaJubilados) {
 		for (Iterator iterator = factorias.iterator(); iterator.hasNext();) {

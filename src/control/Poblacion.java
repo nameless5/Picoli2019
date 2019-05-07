@@ -162,7 +162,7 @@ public class Poblacion {
 		}
 	}
 
-	private int contarTipoPersona(EstadoSer estado, int contador) {
+	public int contarTipoPersona(EstadoSer estado, int contador) {
 		for (int i = 0; i < this.poblacion.size(); i++) {
 			if (estado == this.poblacion.get(i).getTipoEstado()) {
 				contador++;
