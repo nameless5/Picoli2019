@@ -1,86 +1,80 @@
 package control;
 
-import java.lang.reflect.Array;
 import java.util.ArrayDeque;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Stack;
 
+import modelo.empresa.DineroEstado;
 import modelo.empresa.Factorias;
-import modelo.poblacion.EstadoSer;
 import modelo.poblacion.Seres;
+import modelo.vista.DatosEstadoGlobal;
+import modelo.vista.DatosEstadoLocal;
+import modelo.vista.DatosPoblacion;
 
 public class Estado {
 
-	Factorias factoria;
-	Poblacion poblacion;
-	Sede sede;
+	private Factorias factoria;
+	private Poblacion poblacion;
+	private DineroEstado dinero;
+	private Sede sede;
 
-	private double demanda;
-	private int numeroSeres;
-	private double dineroActual;
+	private double demanda = 99999;
 
 	public Estado() {
 		super();
-		//revisar esto
-		this.demanda = demanda;
-		this.dineroActual = dineroActual;
+		this.poblacion = new Poblacion(50, 100, 30);
+		this.sede = new Sede();
+		this.dinero = new DineroEstado(100000);
 	}
 
-	public int obtenerAhorros(ArrayList<Seres> fallecidos, int dineroActual) {
-		fallecidos.clear();
-		for (int i = 0; i < fallecidos.size(); i++) {
-			float ahorro = fallecidos.get(i).getAhorro();
-			dineroActual = (int) (dineroActual + ahorro);
-		}
-		return dineroActual;	
-	}
-	
-	public void setDineroActual(int dineroActual) {
-		this.dineroActual = dineroActual;
+	public void pasarPeriodo() {
+		this.poblacion.reducirVida();
+		this.poblacion.envejecer();
+		this.poblacion.actualizarPoblacion();
+		this.sede.produccionTotal();
+		this.poblacion.demandaAnual();
+		this.sede.contratarDesempleados(this.poblacion.getDesempleados());
+//		factoria.pagarTrabajador(dinero);
+		this.poblacion.pagarNV(dinero);
 	}
 
-	public float pagarTrabajador() {
-		return 1;
+	public void aumentarDemanda() {
+		this.demanda = this.demanda + 10000;
 	}
 
-	public void comprobarPorcentajeTrabajadores() {
-		// TODO
-	}
-
-	public double getDemanda() {
-		return demanda;
-	}
-
-	public int getNumeroSeres() {
-		return numeroSeres;
-	}
-
-	public double getDineroActual() {
-		return dineroActual;
-	}
-
-	public void contratarTrabajador(ArrayDeque<Seres> demandantes, Stack<Seres> pilaTrabajador) {
-		// if(getDemanda()>factoria.getProduccion()) { /*Hay que obtener el numero
-		// concreto de gente a emple*(
-		Seres contratado = demandantes.poll();
-		pilaTrabajador.push(contratado);
+	public void decrementarDemanda() {
+		this.demanda = this.demanda - 10000;
 	}
 
 	public void jubilarTrabajador(Stack<Seres> pilaTrabajador, ArrayDeque<Seres> demandantes) {
 		for (int i = 0; i < pilaTrabajador.size(); i++) {
 			int edad = pilaTrabajador.get(i).getEdad();
-			if(edad>=65) {
+			if (edad >= 65) {
 				pilaTrabajador.remove(i);
 			}
 		}
-		
+
 		for (Iterator iterator = demandantes.iterator(); iterator.hasNext();) {
 			Seres seres = (Seres) iterator.next();
 			int edad = seres.getEdad();
-			if(edad>=65) {
+			if (edad >= 65) {
 				demandantes.remove(seres);
 			}
 		}
 	}
+
+	public DatosPoblacion getDatosPoblacion() {
+		return new DatosPoblacion(this.poblacion.numeroPoblacion(), this.poblacion.numeroMenores(),
+				this.sede.numTrabajadores(), this.poblacion.numeroJubilados(), 0,
+				this.poblacion.eliminarFallecidos().size(), this.poblacion.jubilarTrabajador().size(), 0);
+	}
+
+	public DatosEstadoGlobal getDatosEstadoGlobales() {
+		return new DatosEstadoGlobal(this.demanda, this.sede.produccionTotal(), this.dinero.getDineroTotal(), 0);
+	}
+
+	public DatosEstadoLocal getDatosEstadoLocal() {
+		return new DatosEstadoLocal(0, 0, 0, 0, 0, 0);
+	}
+
 }

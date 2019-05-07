@@ -3,8 +3,11 @@ package modelo.poblacion;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+import javax.swing.text.Utilities;
+
 import control.Estado;
 import control.Poblacion;
+import utilesglobal.Utilies;
 
 public class Seres {
 	private String nombre;
@@ -24,7 +27,7 @@ public class Seres {
 		this.nombre = generarNombreAleatorio(nombres);
 		this.edad = generarEdad();
 		this.ahorro = 0;
-		this.esperanzaVida = generarEsperanzaVida();
+		this.esperanzaVida = Utilies.obtenerAleatorio(90);
 		this.tipoEstado = EstadoSer.menor;
 	}
 
@@ -34,7 +37,7 @@ public class Seres {
 		this.id = sumarId();
 		this.edad = edad;
 		this.ahorro = 0;
-		this.esperanzaVida = generarEsperanzaVida();
+		this.esperanzaVida = Utilies.obtenerAleatorio(this.edad, 90);
 		this.tipoEstado = tipoEstado;
 	}
 
@@ -51,13 +54,6 @@ public class Seres {
 		return aleatorio;
 	}
 
-	public int generarEsperanzaVida() {
-		int esperanzaVidaMin = this.edad;
-		int esperanzaVidaMax = 90;
-		int esperanzaVida = (int) (Math.random() * (esperanzaVidaMax - esperanzaVidaMin) + esperanzaVidaMin);
-		return (int) esperanzaVida;
-	}
-
 	public void anadirNombresAlaLista(LinkedList<String> nombres) {
 		for (int i = 0; i < personas.length; i++) {
 			String nombresRecorridos = personas[i];
@@ -69,40 +65,6 @@ public class Seres {
 		edad = 0;
 		return (int) edad;
 
-	}
-
-	public int generarAhorro() {
-		ahorro = 0;
-		return (int) ahorro;
-	}
-
-	public void calcularParteProporcional(ArrayList<Seres> poblacion, Estado estado, Poblacion poblacioon,
-			EstadoSer estadoSer) {
-		for (int i = 0; i < poblacion.size(); i++) {
-			float nv = obtenerNivelVida(poblacion, i);
-			float ahorro = poblacion.get(i).getAhorro();
-			float resultado = 0;
-			float reduccion = 0.5f;
-			if (poblacion.get(i).getAhorro() < nv) {
-				if (ahorro == 0) {
-					cambiarVida(poblacion, i, reduccion);
-				} else {
-					float diferencia =  nv - poblacion.get(i).getAhorro() ;
-					float porcentaje = diferencia / nv;
-					reduccion = porcentaje * reduccion;
-					cambiarVida(poblacion, i, reduccion);
-				}
-			}
-		}
-	}
-
-	private void cambiarVida(ArrayList<Seres> poblacion, int i, float reduccion) {
-		float esperanzaNueva = poblacion.get(i).getEsperanzaVida() - reduccion;
-		poblacion.get(i).setEsperanzaVida(esperanzaNueva);
-	}
-
-	private float obtenerNivelVida(ArrayList<Seres> poblacion, int i) {
-		return poblacion.get(i).tipoEstado.getNivelVida();
 	}
 
 	public void setEsperanzaVida(float esperanzaVida) {
