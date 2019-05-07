@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Stack;
 
+
 import modelo.empresa.DineroEstado;
 import modelo.poblacion.EstadoSer;
 import modelo.poblacion.Seres;
@@ -49,6 +50,7 @@ public class Poblacion {
 		}
 	}
 
+
 	public double obtenerAhorros(DineroEstado dinero) {
 		fallecidos.clear();
 		for (int i = 0; i < fallecidos.size(); i++) {
@@ -57,7 +59,6 @@ public class Poblacion {
 		}
 		return dinero.getDineroTotal();
 	}
-
 	public int generadorCiudadanos(int numeroCiudadanos) {
 		int nacimiento = 0;
 		for (int i = 0; i < numeroCiudadanos; i++) {
@@ -66,8 +67,12 @@ public class Poblacion {
 			aniadirCiudadanoCreadoAlaLista(ciudadano);
 			nacimiento++;
 		}
+		/* Revisi�n, tambi�n hay que a�adirlo a la lista principal */
+		/* Revisi�n: Se a�aden a las dos listas del tir�n */
+=======
 		/* Revisión, también hay que añadirlo a la lista principal */
 		/* Revisión: Se añaden a las dos listas del tirón */
+
 		return nacimiento;
 	}
 
@@ -141,10 +146,11 @@ public class Poblacion {
 
 	public void pagarNVMenores(DineroEstado dinero) {
 		// Dinero que se le da a cada menor y se acumula en el ahorro
-		float nv = menores.get(0).getTipoEstado().getNivelVida();
+
+		float nv = 365;
 		float dineroTotalPagar = 0;
 		int contador = 0;
-		contador = contarTipoPersona(menores.get(0).getTipoEstado(), contador);
+		contador = contarTipoPersona(EstadoSer.menor, contador);
 		dineroTotalPagar = contador * nv;
 		if (dinero.getDineroTotal() >= dineroTotalPagar) {
 			for (int i = 0; i < this.poblacion.size(); i++) {
@@ -173,10 +179,10 @@ public class Poblacion {
 
 	public void pagarDemandantes(DineroEstado dinero) {
 		// Dinero que se le da a cada demandante y se acumula en el ahorro
-		float nv = demandantes.getFirst().getTipoEstado().getNivelVida();
+		float nv = 182.5f;
 		float dineroTotalPagar = 0;
 		int contador = 0;
-		contador = contarTipoPersona(demandantes.getFirst().getTipoEstado(), contador);
+		contador = contarTipoPersona(EstadoSer.desempleado, contador);
 		dineroTotalPagar = contador * nv / 2;
 		if (dinero.getDineroTotal() >= dineroTotalPagar) {
 			for (int i = 0; i < poblacion.size(); i++) {
@@ -200,10 +206,10 @@ public class Poblacion {
 
 	public void pagarJubilados(DineroEstado dinero) {
 		// Dinero que se le da a cada jubilado y se acumula en el ahorro
-		float nv = jubilados.get(0).getTipoEstado().getNivelVida();
+		float nv = 182.5f;
 		float dineroTotalPagar = 0;
 		int contador = 0;
-		contador = contarTipoPersona(jubilados.get(0).getTipoEstado(), contador);
+		contador = contarTipoPersona(EstadoSer.jubilado, contador);
 		dineroTotalPagar = deberJubilados();
 		if (dinero.getDineroTotal() >= dineroTotalPagar) {
 			for (int i = 0; i < poblacion.size(); i++) {
@@ -256,9 +262,9 @@ public class Poblacion {
 
 	public float deberJubilados() {
 		int contador = 0;
-		float nv = jubilados.get(0).getTipoEstado().getNivelVida();
+		float nv = 182.5f;
 		float acumulador = 0;
-		contador = contarTipoPersona(jubilados.get(0).getTipoEstado(), contador);
+		contador = contarTipoPersona(EstadoSer.jubilado, contador);
 		for (int i = 0; i < poblacion.size(); i++) {
 			if (poblacion.get(i).getTipoEstado() == poblacion.get(i).getTipoEstado().jubilado) {
 				if (pedirAhorro(poblacion, i) < nv) {
@@ -356,4 +362,45 @@ public class Poblacion {
 		return restantes + NumMenores + NumTrabajador;
 	}
 
+
+	public int numeroMenores() {
+		int contador = 0;
+		for (int i = 0; i < poblacion.size(); i++) {
+			if (poblacion.get(i).getTipoEstado() == EstadoSer.menor) {
+				contador++;
+			}
+		}
+		return contador;
+	}
+
+	public int numeroJubilados() {
+		int contador = 0;
+		for (int i = 0; i < poblacion.size(); i++) {
+			if (poblacion.get(i).getTipoEstado() == EstadoSer.jubilado) {
+				contador++;
+			}
+		}
+		return contador;
+	}
+
+	public int numeroPoblacion() {
+		int contador = 0;
+		for (int i = 0; i < poblacion.size(); i++) {
+			contador++;
+		}
+		return contador;
+	}
+	public ArrayList<Seres> getDesempleados() {
+		ArrayList<Seres> lista = new ArrayList<Seres>();
+		for (Iterator iterator = this.poblacion.iterator(); iterator.hasNext();) {
+			Seres ser = (Seres) iterator.next();
+			if (ser.getTipoEstado() == EstadoSer.desempleado) {
+				ser.setTipoEstado(EstadoSer.trabajador);;
+				lista.add(ser);
+			}
+		}
+		return lista;
 }
+
+}
+
