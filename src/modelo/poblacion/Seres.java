@@ -20,7 +20,7 @@ public class Seres {
 	private String[] personas = { "Antonio", "Paco", "Pepe", "Monica", "Laura", "Marta", "Manolo", "Maria", "Pedro",
 			"Jesus", "Fran", "Ana", "Raul", "Victoria", "SerRaro", "Alien", "Depredador", "Pitufino", "Rufino",
 			"Teresa" };
-
+	
 	public Seres() {
 		super();
 		this.id = sumarId();

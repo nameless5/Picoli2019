@@ -6,6 +6,7 @@ import java.util.Stack;
 
 import modelo.empresa.DineroEstado;
 import modelo.empresa.Factorias;
+import modelo.poblacion.EstadoSer;
 import modelo.poblacion.Seres;
 import modelo.vista.DatosEstadoGlobal;
 import modelo.vista.DatosEstadoLocal;
@@ -13,14 +14,13 @@ import modelo.vista.DatosPoblacion;
 
 public class Estado {
 
-
-	private Factorias factoria;
-	private Poblacion poblacion;
-	private DineroEstado dinero;
-	private Sede sede;
-
-	private double demanda = 99999;
-
+	Factorias factoria;
+	Poblacion poblacion;
+	DineroEstado dinero;
+	Sede sede;
+	private double produccion = calcularProduccion();
+	private double produccionAuxiliar = produccion;
+	private double demanda;
 
 	public Estado() {
 		super();
@@ -30,14 +30,121 @@ public class Estado {
 	}
 
 	public void pasarPeriodo() {
-		this.poblacion.reducirVida();
-		this.poblacion.envejecer();
-		this.poblacion.actualizarPoblacion();
-		this.sede.produccionTotal();
-		this.poblacion.demandaAnual();
-		this.sede.contratarDesempleados(this.poblacion.getDesempleados());
-//		factoria.pagarTrabajador(dinero);
-		this.poblacion.pagarNV(dinero);
+		sede.produccionTotal();
+		factoria.pagarTrabajador(dinero);
+		poblacion.pagarNV(dinero);
+		poblacion.envejecer();
+		poblacion.cambiarTipoHabitante();
+		poblacion.reducirVida();
+
+	}
+
+	public double getDemanda() {
+		return demanda;
+	}
+
+	public double getProduccion() {
+		return produccion;
+	}
+
+	public void setProduccion(double produccion) {
+		this.produccion = produccion;
+	}
+
+	public float calcularProduccion() {
+		int contarTrabajadores = poblacion.contarTipoPersona(EstadoSer.trabajador, 0);
+		return contarTrabajadores * 1000;
+	}
+
+	public double incrementarDemanda() {
+		float porcentaje = (float) (this.demanda * 0.1);
+		return demanda += porcentaje;
+	}
+
+	public double disminuirDemanda() {
+		float porcentaje = (float) (this.demanda * 0.1);
+		return demanda -= porcentaje;
+	}
+
+	public int calcularTrabajadores() {
+		double calcular = demanda - produccion;
+		float diferencia = (float) (calcular / 1000);
+		if (demanda != produccion) {
+			if (demanda > produccion) {
+				int trabajadores = (int) Math.ceil(diferencia);
+				return trabajadores;
+			} else {
+				int trabajadores = (int) Math.ceil(diferencia);
+				return trabajadores;
+			}
+		} else {
+			return 0;
+		}
+
+	}
+
+	public void contratarTrabajador(ArrayDeque<Seres> demandantes, Stack<Seres> pilaTrabajador) {
+		// if(getDemanda()>factoria.getProduccion()) { /*Hay que obtener el numero
+		// concreto de gente a emple*(
+		Seres contratado = demandantes.poll();
+		pilaTrabajador.push(contratado);
+	}
+
+	public void contratarOdespedir(ArrayDeque<Seres> demandantes, Stack<Seres> pilaTrabajador) {
+		int trabajadores = calcularTrabajadores();
+		if (trabajadores > 0) {
+			if (demandantes.size() > trabajadores) {
+				for (int i = 0; i < trabajadores; i++) {
+					contratarTrabajador(demandantes, pilaTrabajador);
+				}
+			}else {
+				int nacimientos = trabajadores-demandantes.size();
+				for (int i = 0; i < demandantes.size(); i++) {
+					contratarTrabajador(demandantes, pilaTrabajador);
+				}
+					poblacion.generadorCiudadanos(nacimientos);
+			}
+
+		} else {
+			trabajadores = trabajadores * -1;
+			for (int i = 0; i < trabajadores; i++) {
+				sede.despedirTrabajadores(demandantes, factoria);
+			}
+
+		}
+	}
+
+	/*POSIBLE PRUEBA DEL TEST
+	 * public static void main(String[] args) {
+		double produccion = 100000;
+		double demanda = 75250;
+		int trabajadores = 0;
+
+		double calcular = demanda - produccion;
+		float diferencia = (float) (calcular / 1000);
+		if (demanda != produccion) {
+			if (demanda > produccion) {
+				trabajadores = (int) Math.ceil(diferencia);
+				System.out.println(trabajadores);
+			} else {
+				trabajadores = (int) Math.ceil(diferencia);
+				System.out.println(trabajadores * 1000);
+			}
+		} else {
+			System.out.println(trabajadores);
+
+		}
+
+	}*/
+
+	public void calcularDemandantes(double trabajadores, ArrayDeque<Seres> demandantes, Stack<Seres> pilaTrabajador) {
+		if (demandantes.size() > trabajadores) {
+			for (int i = 0; i < trabajadores; i++) {
+				pilaTrabajador.push(demandantes.getFirst());
+
+			}
+		}
+
 	}
 
 	public void aumentarDemanda() {
@@ -48,27 +155,10 @@ public class Estado {
 		this.demanda = this.demanda - 10000;
 	}
 
-	public void jubilarTrabajador(Stack<Seres> pilaTrabajador, ArrayDeque<Seres> demandantes) {
-		for (int i = 0; i < pilaTrabajador.size(); i++) {
-			int edad = pilaTrabajador.get(i).getEdad();
-			if (edad >= 65) {
-				pilaTrabajador.remove(i);
-			}
-		}
-
-		for (Iterator iterator = demandantes.iterator(); iterator.hasNext();) {
-			Seres seres = (Seres) iterator.next();
-			int edad = seres.getEdad();
-			if (edad >= 65) {
-				demandantes.remove(seres);
-			}
-		}
-	}
-
 	public DatosPoblacion getDatosPoblacion() {
 		return new DatosPoblacion(this.poblacion.numeroPoblacion(), this.poblacion.numeroMenores(),
-				this.sede.numTrabajadores(), this.poblacion.numeroJubilados(), 0,
-				this.poblacion.eliminarFallecidos().size(), this.poblacion.jubilarTrabajador().size(), 0);
+				this.sede.numTrabajadores(), this.poblacion.numeroJubilados(), 0, this.poblacion.numeroFallecidos(),
+				this.poblacion.jubilarTrabajador().size(), 0);
 	}
 
 	public DatosEstadoGlobal getDatosEstadoGlobales() {
@@ -78,5 +168,4 @@ public class Estado {
 	public DatosEstadoLocal getDatosEstadoLocal() {
 		return new DatosEstadoLocal(0, 0, 0, 0, 0, 0);
 	}
-
 }

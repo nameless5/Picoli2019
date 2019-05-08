@@ -41,17 +41,6 @@ public class Factorias {
 			dinero.setDineroTotal(dinero.getDineroTotal() - (nv + cobroLimpioCadaTrabajador));
 		}
 	}
-	public void pagarTrabajador(DineroEstado dinero) {
-		float pagar= (float) (this.pilaTrabajador.get(0).getTipoEstado().getSueldo());
-		float impuesto=this.pilaTrabajador.get(0).getTipoEstado().getNivelVida()/2;
-		float nv = this.pilaTrabajador.get(0).getTipoEstado().getNivelVida();
-		float cobroLimpioCadaTrabajador = pagar - impuesto - nv;
-		for (int i = 0; i < pilaTrabajador.size(); i++) {
-			float suma=pilaTrabajador.get(i).getAhorro() + cobroLimpioCadaTrabajador;
-			pilaTrabajador.get(i).setAhorro(suma);
-			dinero.setDineroTotal(dinero.getDineroTotal() - nv - cobroLimpioCadaTrabajador);
-		}
-	}
 
 	public int getProduccion() {
 		return produccionEmpleado;

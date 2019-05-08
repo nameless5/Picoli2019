@@ -14,12 +14,12 @@ public class ParaUI extends UI {
 
 	private Estado estado = new Estado();
 
-	public ParaUI() {
-		super();
-		estado.pasarPeriodo();
-		setDatosEnElInterfazUsuario(estado.getDatosPoblacion(), estado.getDatosEstadoLocal(),
-				estado.getDatosEstadoGlobales());
-	}
+    public ParaUI() {
+        super();
+        estado.pasarPeriodo();
+        setDatosEnElInterfazUsuario(estado.getDatosPoblacion(), estado.getDatosEstadoLocal(),
+                estado.getDatosEstadoGlobales());
+    }
 
 	public void listener() {
 

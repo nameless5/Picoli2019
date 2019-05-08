@@ -69,10 +69,6 @@ public class Poblacion {
 		}
 		/* Revisi�n, tambi�n hay que a�adirlo a la lista principal */
 		/* Revisi�n: Se a�aden a las dos listas del tir�n */
-=======
-		/* Revisión, también hay que añadirlo a la lista principal */
-		/* Revisión: Se añaden a las dos listas del tirón */
-
 		return nacimiento;
 	}
 
@@ -168,7 +164,7 @@ public class Poblacion {
 		}
 	}
 
-	private int contarTipoPersona(EstadoSer estado, int contador) {
+	public int contarTipoPersona(EstadoSer estado, int contador) {
 		for (int i = 0; i < this.poblacion.size(); i++) {
 			if (estado == this.poblacion.get(i).getTipoEstado()) {
 				contador++;
@@ -290,32 +286,6 @@ public class Poblacion {
 		return morosos;
 	}
 
-	public boolean isFallecido() {
-		boolean resultado = false;
-		for (int i = 0; i < poblacion.size(); i++) {
-			if (poblacion.get(i).getEdad() >= poblacion.get(i).getEsperanzaVida()) {
-				resultado = true;
-			}
-
-		}
-		return resultado;
-	}
-
-	public ArrayList<Seres> eliminarFallecidos() {
-		fallecidos.clear();
-		for (int i = 0; i < poblacion.size(); i++) {
-			Seres persona = poblacion.get(i);
-			if (isFallecido()) {
-				fallecidos.add(persona);
-				poblacion.remove(persona);
-				if (jubilados.contains(persona)) {
-					jubilados.remove(persona);
-				}
-			}
-		}
-		return fallecidos;
-	}
-
 	public void actualizarPoblacion() {
 		int edad, respuesta;
 		for (int i = 0; i < poblacion.size(); i++) {
@@ -401,6 +371,45 @@ public class Poblacion {
 		}
 		return lista;
 }
+	public boolean isFallecido(Seres ser) {
+        boolean resultado = false;
+            if (ser.getEdad() >=ser.getEsperanzaVida()) {
+                resultado = true;
+
+        }
+        return resultado;
+    }
+
+    public ArrayList<Seres> eliminarFallecidos() {
+        fallecidos.clear();
+        for (int i = 0; i < poblacion.size(); i++) {
+            Seres persona = poblacion.get(i);
+            if (isFallecido(persona)) {
+                fallecidos.add(persona);
+                poblacion.remove(persona);
+                if (jubilados.contains(persona)) {
+                    jubilados.remove(persona);
+                }
+            }
+        }
+        return fallecidos;
+    }
+
+    public int numeroFallecidos() {
+        int contador = 0;
+        for (int i = 0; i < this.poblacion.size(); i++) {
+            Seres persona = this.poblacion.get(i);
+            if (isFallecido(persona)) {
+                this.poblacion.remove(persona);
+                contador++;
+                if (this.jubilados.contains(persona)) {
+                    this.jubilados.remove(persona);
+                }
+            }
+        }
+        return contador;
+	}
+
 
 }
 
